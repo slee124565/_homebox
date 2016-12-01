@@ -86,6 +86,10 @@ SamplePlatform.prototype.configureAccessory = function(accessory) {
     .getCharacteristic(Characteristic.On)
     .on('set', function(value, callback) {
       platform.log(accessory.displayName, "Light -> " + value);
+      if (value == '1') {
+	//platform.log(accessory.displayName, 'startScene');
+        startScene();
+      }
       callback();
     });
   }
@@ -191,7 +195,7 @@ SamplePlatform.prototype.addAccessory = function(accessoryName) {
   // newAccessory.context.something = "Something"
   
   // Make sure you provided a name for service otherwise it may not visible in some HomeKit apps.
-  newAccessory.addService(Service.Lightbulb, "Test Light")
+  newAccessory.addService(Service.Lightbulb, "環境資訊系統")
   .getCharacteristic(Characteristic.On)
   .on('set', function(value, callback) {
     platform.log(accessory.displayName, "Light -> " + value);
@@ -216,4 +220,22 @@ SamplePlatform.prototype.removeAccessory = function() {
   this.api.unregisterPlatformAccessories("homebridge-samplePlatform", "SamplePlatform", this.accessories);
 
   this.accessories = [];
+}
+
+function startScene() {
+    var http = require('http');
+    var scene_ID_env = 17
+    var scene_ID_appleTV = 8
+    var sceneID = scene_ID_env;
+    var hc2Username = 'admin';
+    var hc2Password = 'flhadmin';
+    var header = { 'host': '192.168.10.5',
+                  'path': '/api/sceneControl?id=' + sceneID + '&action=start',
+                    'auth': hc2Username + ':' + hc2Password
+                 };
+    var request = http.request(header, function(response){
+                        console.log('statusCode: ' + response.statusCode);
+    });
+    request.end();
+
 }
