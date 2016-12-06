@@ -14,7 +14,7 @@ module.exports = function(homebridge) {
   
   // For platform plugin to be considered as dynamic platform plugin,
   // registerPlatform(pluginName, platformName, constructor, dynamic), dynamic must be true
-  homebridge.registerPlatform("homebridge-samplePlatform", "SamplePlatform", SamplePlatform, true);
+  homebridge.registerPlatform("homebridge-samplePlatform2", "SamplePlatform", SamplePlatform, true);
 }
 
 // Platform constructor
@@ -47,7 +47,7 @@ function SamplePlatform(log, config, api) {
     }
   }.bind(this));
 
-  this.requestServer.listen(18081, function() {
+  this.requestServer.listen(18082, function() {
     platform.log("Server Listening...");
   });
 
@@ -195,7 +195,7 @@ SamplePlatform.prototype.addAccessory = function(accessoryName) {
   // newAccessory.context.something = "Something"
   
   // Make sure you provided a name for service otherwise it may not visible in some HomeKit apps.
-  newAccessory.addService(Service.Lightbulb, "大門")
+  newAccessory.addService(Service.Lightbulb, "劇院模式")
   .getCharacteristic(Characteristic.On)
   .on('set', function(value, callback) {
     platform.log(accessory.displayName, "Light -> " + value);
@@ -203,7 +203,7 @@ SamplePlatform.prototype.addAccessory = function(accessoryName) {
   });
 
   this.accessories.push(newAccessory);
-  this.api.registerPlatformAccessories("homebridge-samplePlatform", "SamplePlatform", [newAccessory]);
+  this.api.registerPlatformAccessories("homebridge-samplePlatform2", "SamplePlatform", [newAccessory]);
 }
 
 SamplePlatform.prototype.updateAccessoriesReachability = function() {
@@ -217,7 +217,7 @@ SamplePlatform.prototype.updateAccessoriesReachability = function() {
 // Sample function to show how developer can remove accessory dynamically from outside event
 SamplePlatform.prototype.removeAccessory = function() {
   this.log("Remove Accessory");
-  this.api.unregisterPlatformAccessories("homebridge-samplePlatform", "SamplePlatform", this.accessories);
+  this.api.unregisterPlatformAccessories("homebridge-samplePlatform2", "SamplePlatform", this.accessories);
 
   this.accessories = [];
 }
@@ -227,7 +227,7 @@ function startScene() {
     var scene_ID_env = 17;
     var scene_ID_appleTV = 8;
     var scene_ID_opendoor = 79;
-    var sceneID = scene_ID_opendoor;
+    var sceneID = scene_ID_appleTV;
     var hc2Username = 'admin';
     var hc2Password = 'flhadmin';
     var header = { 'host': '192.168.10.5',
