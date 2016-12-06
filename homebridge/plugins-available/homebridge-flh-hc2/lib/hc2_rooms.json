@@ -1,0 +1,132 @@
+[
+  {
+    "id": 20,
+    "name": "客廳",
+    "sectionID": 20,
+    "icon": "room_cinema",
+    "defaultSensors": {
+      "temperature": 472,
+      "humidity": 473,
+      "light": 0
+    },
+    "defaultThermostat": 0,
+    "sortOrder": 1
+  },
+  {
+    "id": 21,
+    "name": "餐廳",
+    "sectionID": 20,
+    "icon": "room_jadalnia",
+    "defaultSensors": {
+      "temperature": 477,
+      "humidity": 478,
+      "light": 0
+    },
+    "defaultThermostat": 0,
+    "sortOrder": 6
+  },
+  {
+    "id": 22,
+    "name": "吧檯",
+    "sectionID": 20,
+    "icon": "room_kawa",
+    "defaultSensors": {
+      "temperature": 0,
+      "humidity": 0,
+      "light": 0
+    },
+    "defaultThermostat": 0,
+    "sortOrder": 4
+  },
+  {
+    "id": 23,
+    "name": "走道",
+    "sectionID": 20,
+    "icon": "room_schody2",
+    "defaultSensors": {
+      "temperature": 222,
+      "humidity": 0,
+      "light": 223
+    },
+    "defaultThermostat": 0,
+    "sortOrder": 5
+  },
+  {
+    "id": 24,
+    "name": "環境資訊面板",
+    "sectionID": 20,
+    "icon": "room_organizer",
+    "defaultSensors": {
+      "temperature": 451,
+      "humidity": 453,
+      "light": 0
+    },
+    "defaultThermostat": 0,
+    "sortOrder": 7
+  },
+  {
+    "id": 25,
+    "name": "視聽遙控器",
+    "sectionID": 20,
+    "icon": "User1001",
+    "defaultSensors": {
+      "temperature": 0,
+      "humidity": 0,
+      "light": 0
+    },
+    "defaultThermostat": 0,
+    "sortOrder": 2
+  },
+  {
+    "id": 26,
+    "name": "大門",
+    "sectionID": 20,
+    "icon": "room_drzwiwejsciowe",
+    "defaultSensors": {
+      "temperature": 0,
+      "humidity": 0,
+      "light": 0
+    },
+    "defaultThermostat": 0,
+    "sortOrder": 3
+  },
+  {
+    "id": 27,
+    "name": "自動控制面板",
+    "sectionID": 20,
+    "icon": "room_office",
+    "defaultSensors": {
+      "temperature": 0,
+      "humidity": 0,
+      "light": 0
+    },
+    "defaultThermostat": 0,
+    "sortOrder": 8
+  },
+  {
+    "id": 28,
+    "name": "teset",
+    "sectionID": 20,
+    "icon": "room_konik",
+    "defaultSensors": {
+      "temperature": 0,
+      "humidity": 0,
+      "light": 0
+    },
+    "defaultThermostat": 0,
+    "sortOrder": 9
+  },
+  {
+    "id": 29,
+    "name": "活動",
+    "sectionID": 20,
+    "icon": "room_bile",
+    "defaultSensors": {
+      "temperature": 0,
+      "humidity": 0,
+      "light": 0
+    },
+    "defaultThermostat": 0,
+    "sortOrder": 10
+  }
+]

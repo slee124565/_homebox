@@ -1,0 +1,2745 @@
+[
+  {
+    "id": 1,
+    "name": "室內環境偵測",
+    "type": "",
+    "properties": "",
+    "roomID": 24,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": true,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 5,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [
+        {
+          "id": 451,
+          "name": "value"
+        },
+        {
+          "id": 452,
+          "name": "value"
+        },
+        {
+          "id": 453,
+          "name": "value"
+        }
+      ],
+      "globals": [
+        "EH_FakeCo",
+        "EH_FakeHu",
+        "EH_FakeInTe",
+        "EH_UseFakeCo",
+        "EH_UseFakeHu",
+        "EH_UseFakeInTe"
+      ],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 17
+  },
+  {
+    "id": 2,
+    "name": "資訊傳送server",
+    "type": "",
+    "properties": "",
+    "roomID": 24,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": true,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 5,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [
+        "EH_ValueCo",
+        "EH_ValueHu",
+        "EH_ValueInTe",
+        "EH_ValueOutTe",
+        "EH_ValuePm",
+        "EH_ValueUv"
+      ],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 18
+  },
+  {
+    "id": 3,
+    "name": "左-情境開關",
+    "type": "",
+    "properties": "",
+    "roomID": 0,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 5,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [
+        {
+          "id": 130,
+          "name": "sceneActivation"
+        }
+      ],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 61
+  },
+  {
+    "id": 4,
+    "name": "中-情境開關",
+    "type": "",
+    "properties": "",
+    "roomID": 0,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [
+        {
+          "id": 112,
+          "name": "sceneActivation"
+        }
+      ],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 62
+  },
+  {
+    "id": 5,
+    "name": "右-情境開關",
+    "type": "",
+    "properties": "",
+    "roomID": 0,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [
+        {
+          "id": 114,
+          "name": "sceneActivation"
+        }
+      ],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 145
+  },
+  {
+    "id": 6,
+    "name": "電視旁-情境開關",
+    "type": "",
+    "properties": "",
+    "roomID": 0,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [
+        {
+          "id": 116,
+          "name": "sceneActivation"
+        }
+      ],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 146
+  },
+  {
+    "id": 7,
+    "name": "吧檯-情境開關",
+    "type": "",
+    "properties": "",
+    "roomID": 0,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [
+        {
+          "id": 134,
+          "name": "sceneActivation"
+        }
+      ],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 147
+  },
+  {
+    "id": 8,
+    "name": "Apple TV",
+    "type": "",
+    "properties": "",
+    "roomID": 20,
+    "iconID": 4,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 5,
+    "runningInstances": 0,
+    "visible": false,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 64
+  },
+  {
+    "id": 9,
+    "name": "閱讀模式",
+    "type": "",
+    "properties": "",
+    "roomID": 20,
+    "iconID": 1009,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 5,
+    "runningInstances": 0,
+    "visible": false,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 66
+  },
+  {
+    "id": 10,
+    "name": "音樂播放",
+    "type": "",
+    "properties": "",
+    "roomID": 20,
+    "iconID": 1003,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 3,
+    "runningInstances": 0,
+    "visible": false,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 67
+  },
+  {
+    "id": 11,
+    "name": "全關",
+    "type": "",
+    "properties": "",
+    "roomID": 26,
+    "iconID": 1006,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 5,
+    "runningInstances": 0,
+    "visible": false,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 68
+  },
+  {
+    "id": 12,
+    "name": "全開",
+    "type": "",
+    "properties": "",
+    "roomID": 26,
+    "iconID": 1010,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 5,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "回家",
+    "liliStopCommand": "",
+    "sortOrder": 69
+  },
+  {
+    "id": 13,
+    "name": "用餐模式",
+    "type": "",
+    "properties": "",
+    "roomID": 21,
+    "iconID": 1001,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 3,
+    "runningInstances": 0,
+    "visible": false,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 74
+  },
+  {
+    "id": 14,
+    "name": "餐廳全關",
+    "type": "",
+    "properties": "",
+    "roomID": 21,
+    "iconID": 1014,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": false,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 75
+  },
+  {
+    "id": 15,
+    "name": "準備模式",
+    "type": "",
+    "properties": "",
+    "roomID": 20,
+    "iconID": 1004,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 80
+  },
+  {
+    "id": 16,
+    "name": "客廳全關",
+    "type": "",
+    "properties": "",
+    "roomID": 20,
+    "iconID": 1014,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": false,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 82
+  },
+  {
+    "id": 17,
+    "name": "環境資訊系統",
+    "type": "",
+    "properties": "",
+    "roomID": 24,
+    "iconID": 1008,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": false,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 89
+  },
+  {
+    "id": 18,
+    "name": "情境遙控器",
+    "type": "",
+    "properties": "",
+    "roomID": 20,
+    "iconID": 1022,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [
+        {
+          "id": 219,
+          "name": "sceneActivation"
+        }
+      ],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 338
+  },
+  {
+    "id": 19,
+    "name": "有人闖入通知",
+    "type": "",
+    "properties": "",
+    "roomID": 23,
+    "iconID": 5,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": false,
+    "triggers": {
+      "properties": [
+        {
+          "id": 221,
+          "name": "value"
+        },
+        {
+          "id": 221,
+          "name": "armed"
+        }
+      ],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 141
+  },
+  {
+    "id": 20,
+    "name": "招牌燈開",
+    "type": "",
+    "properties": "",
+    "roomID": 26,
+    "iconID": 5,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": true,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 2,
+    "runningInstances": 1,
+    "visible": false,
+    "isLua": false,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 156
+  },
+  {
+    "id": 21,
+    "name": "招牌燈關",
+    "type": "",
+    "properties": "",
+    "roomID": 26,
+    "iconID": 5,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": true,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 2,
+    "runningInstances": 1,
+    "visible": false,
+    "isLua": false,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 158
+  },
+  {
+    "id": 22,
+    "name": "防盜觸發",
+    "type": "",
+    "properties": "",
+    "roomID": 24,
+    "iconID": 1031,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 9,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [
+        {
+          "id": 237,
+          "name": "value"
+        },
+        {
+          "id": 237,
+          "name": "armed"
+        },
+        {
+          "id": 221,
+          "name": "value"
+        },
+        {
+          "id": 221,
+          "name": "armed"
+        },
+        {
+          "id": 334,
+          "name": "value"
+        },
+        {
+          "id": 334,
+          "name": "armed"
+        }
+      ],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 162
+  },
+  {
+    "id": 23,
+    "name": "開啟監視系統",
+    "type": "",
+    "properties": "",
+    "roomID": 24,
+    "iconID": 1018,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": false,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 163
+  },
+  {
+    "id": 25,
+    "name": "DP104門鈴",
+    "type": "",
+    "properties": "",
+    "roomID": 26,
+    "iconID": 1011,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 164
+  },
+  {
+    "id": 26,
+    "name": "送客模式",
+    "type": "",
+    "properties": "",
+    "roomID": 26,
+    "iconID": 1019,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 165
+  },
+  {
+    "id": 28,
+    "name": "吧檯模式",
+    "type": "",
+    "properties": "",
+    "roomID": 22,
+    "iconID": 1,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": false,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 166
+  },
+  {
+    "id": 29,
+    "name": "下午茶咖啡模式",
+    "type": "",
+    "properties": "",
+    "roomID": 22,
+    "iconID": 1013,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": false,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 169
+  },
+  {
+    "id": 30,
+    "name": "吧檯全關",
+    "type": "",
+    "properties": "",
+    "roomID": 22,
+    "iconID": 1014,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": false,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 170
+  },
+  {
+    "id": 40,
+    "name": "模擬空氣品質變差",
+    "type": "",
+    "properties": "",
+    "roomID": 20,
+    "iconID": 1012,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 307
+  },
+  {
+    "id": 43,
+    "name": "吧檯模式 吧檯",
+    "type": "com.fibaro.magicScene",
+    "properties": "{\"conditionDeviceId\":290,\"conditionObjectType\":\"device\",\"conditionId\":\"condition_centralSceneEvent1Pressed_290\",\"conditionLua\":\"true\",\"conditionValue\":\"\",\"trigger\":\"290 CentralSceneEvent 1 Pressed\",\"actionDeviceId\":28,\"actionObjectType\":\"scene\",\"actionId\":\"action_runScene_28\",\"actionLua\":\"fibaro:startScene(28);\",\"actionValue\":\"\",\"looping\":false}",
+    "roomID": 0,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": [
+        {
+          "deviceId": 290,
+          "eventName": "CentralSceneEvent",
+          "args": [
+            "1",
+            "Pressed"
+          ]
+        }
+      ]
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 244
+  },
+  {
+    "id": 44,
+    "name": "吧檯全關 吧檯",
+    "type": "com.fibaro.magicScene",
+    "properties": "{\"conditionDeviceId\":290,\"conditionObjectType\":\"device\",\"conditionId\":\"condition_centralSceneEvent2Pressed_290\",\"conditionLua\":\"true\",\"conditionValue\":\"\",\"trigger\":\"290 CentralSceneEvent 2 Pressed\",\"actionDeviceId\":30,\"actionObjectType\":\"scene\",\"actionId\":\"action_runScene_30\",\"actionLua\":\"fibaro:startScene(30);\",\"actionValue\":\"\",\"looping\":false}",
+    "roomID": 0,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": [
+        {
+          "deviceId": 290,
+          "eventName": "CentralSceneEvent",
+          "args": [
+            "2",
+            "Pressed"
+          ]
+        }
+      ]
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 245
+  },
+  {
+    "id": 45,
+    "name": "用餐模式 餐廳",
+    "type": "com.fibaro.magicScene",
+    "properties": "{\"conditionDeviceId\":290,\"conditionObjectType\":\"device\",\"conditionId\":\"condition_centralSceneEvent3Pressed_290\",\"conditionLua\":\"true\",\"conditionValue\":\"\",\"trigger\":\"290 CentralSceneEvent 3 Pressed\",\"actionDeviceId\":13,\"actionObjectType\":\"scene\",\"actionId\":\"action_runScene_13\",\"actionLua\":\"fibaro:startScene(13);\",\"actionValue\":\"\",\"looping\":false}",
+    "roomID": 0,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": [
+        {
+          "deviceId": 290,
+          "eventName": "CentralSceneEvent",
+          "args": [
+            "3",
+            "Pressed"
+          ]
+        }
+      ]
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 246
+  },
+  {
+    "id": 47,
+    "name": "餐廳全關 餐廳",
+    "type": "com.fibaro.magicScene",
+    "properties": "{\"conditionDeviceId\":290,\"conditionObjectType\":\"device\",\"conditionId\":\"condition_centralSceneEvent4Pressed_290\",\"conditionLua\":\"true\",\"conditionValue\":\"\",\"trigger\":\"290 CentralSceneEvent 4 Pressed\",\"actionDeviceId\":14,\"actionObjectType\":\"scene\",\"actionId\":\"action_runScene_14\",\"actionLua\":\"fibaro:startScene(14);\",\"actionValue\":\"\",\"looping\":false}",
+    "roomID": 0,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": [
+        {
+          "deviceId": 290,
+          "eventName": "CentralSceneEvent",
+          "args": [
+            "4",
+            "Pressed"
+          ]
+        }
+      ]
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 178
+  },
+  {
+    "id": 48,
+    "name": "餐桌吊燈 餐廳",
+    "type": "com.fibaro.magicScene",
+    "properties": "{\"conditionDeviceId\":290,\"conditionObjectType\":\"device\",\"conditionId\":\"condition_centralSceneEvent5HeldDown_290\",\"conditionLua\":\"true\",\"conditionValue\":\"\",\"trigger\":\"290 CentralSceneEvent 5 Released\\n290 CentralSceneEvent 5 HeldDown\",\"actionDeviceId\":104,\"actionObjectType\":\"device\",\"actionId\":\"action_levelUp_104\",\"actionLua\":\"local deviceId = 104\\nif (sourceTrigger['type'] == 'event') then\\nif (sourceTrigger['event']['data']['keyAttribute'] == 'HeldDown') then\\nfibaro:call(deviceId, 'startLevelIncrease')\\nelse\\nfibaro:call(deviceId, 'stopLevelChange')\\nend\\nelseif (sourceTrigger['type'] == 'other') then\\nfibaro:call(deviceId, 'startLevelIncrease')\\nend\",\"actionValue\":\"\",\"looping\":true}",
+    "roomID": 0,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": [
+        {
+          "deviceId": 290,
+          "eventName": "CentralSceneEvent",
+          "args": [
+            "5",
+            "Released"
+          ]
+        },
+        {
+          "deviceId": 290,
+          "eventName": "CentralSceneEvent",
+          "args": [
+            "5",
+            "HeldDown"
+          ]
+        }
+      ]
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 179
+  },
+  {
+    "id": 49,
+    "name": "餐桌吊燈 餐廳",
+    "type": "com.fibaro.magicScene",
+    "properties": "{\"conditionDeviceId\":290,\"conditionObjectType\":\"device\",\"conditionId\":\"condition_centralSceneEvent6HeldDown_290\",\"conditionLua\":\"true\",\"conditionValue\":\"\",\"trigger\":\"290 CentralSceneEvent 6 Released\\n290 CentralSceneEvent 6 HeldDown\",\"actionDeviceId\":104,\"actionObjectType\":\"device\",\"actionId\":\"action_levelDown_104\",\"actionLua\":\"local deviceId = 104\\nif (sourceTrigger['type'] == 'event') then\\nif (sourceTrigger['event']['data']['keyAttribute'] == 'HeldDown') then\\nfibaro:call(deviceId, 'startLevelDecrease')\\nelse\\nfibaro:call(deviceId, 'stopLevelChange')\\nend\\nelseif (sourceTrigger['type'] == 'other') then\\nfibaro:call(deviceId, 'startLevelDecrease')\\nend\",\"actionValue\":\"\",\"looping\":true}",
+    "roomID": 0,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": [
+        {
+          "deviceId": 290,
+          "eventName": "CentralSceneEvent",
+          "args": [
+            "6",
+            "Released"
+          ]
+        },
+        {
+          "deviceId": 290,
+          "eventName": "CentralSceneEvent",
+          "args": [
+            "6",
+            "HeldDown"
+          ]
+        }
+      ]
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 180
+  },
+  {
+    "id": 52,
+    "name": "關閉警報",
+    "type": "",
+    "properties": "",
+    "roomID": 24,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 5,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [
+        {
+          "id": 237,
+          "name": "armed"
+        },
+        {
+          "id": 221,
+          "name": "armed"
+        },
+        {
+          "id": 334,
+          "name": "armed"
+        }
+      ],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 187
+  },
+  {
+    "id": 54,
+    "name": "投影模式",
+    "type": "",
+    "properties": "",
+    "roomID": 20,
+    "iconID": 1020,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 3,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 79
+  },
+  {
+    "id": 55,
+    "name": "投影關閉",
+    "type": "",
+    "properties": "",
+    "roomID": 20,
+    "iconID": 1021,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 3,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 136
+  },
+  {
+    "id": 58,
+    "name": "影片介紹",
+    "type": "",
+    "properties": "",
+    "roomID": 20,
+    "iconID": 1023,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": false,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 198
+  },
+  {
+    "id": 59,
+    "name": "故事準備中",
+    "type": "",
+    "properties": "",
+    "roomID": 29,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 204
+  },
+  {
+    "id": 60,
+    "name": "回家",
+    "type": "",
+    "properties": "",
+    "roomID": 29,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 205
+  },
+  {
+    "id": 61,
+    "name": "劇院",
+    "type": "",
+    "properties": "",
+    "roomID": 29,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 207
+  },
+  {
+    "id": 62,
+    "name": "來電",
+    "type": "",
+    "properties": "",
+    "roomID": 29,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 208
+  },
+  {
+    "id": 63,
+    "name": "通話結束",
+    "type": "",
+    "properties": "",
+    "roomID": 29,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 209
+  },
+  {
+    "id": 64,
+    "name": "閱讀",
+    "type": "",
+    "properties": "",
+    "roomID": 29,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 210
+  },
+  {
+    "id": 65,
+    "name": "布幕上",
+    "type": "",
+    "properties": "",
+    "roomID": 29,
+    "iconID": 5,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": true,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": false,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 215
+  },
+  {
+    "id": 66,
+    "name": "布幕下",
+    "type": "",
+    "properties": "",
+    "roomID": 29,
+    "iconID": 5,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": true,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": false,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 216
+  },
+  {
+    "id": 69,
+    "name": "客廳窗簾 客廳",
+    "type": "com.fibaro.magicScene",
+    "properties": "{\"conditionDeviceId\":336,\"conditionObjectType\":\"device\",\"conditionId\":\"condition_centralSceneEvent3Pressed_336\",\"conditionLua\":\"true\",\"trigger\":\"336 CentralSceneEvent 3 Pressed\",\"actionDeviceId\":303,\"actionObjectType\":\"device\",\"actionId\":\"action_open_303\",\"actionLua\":\"fibaro:call(303, 'open')\",\"looping\":false}",
+    "roomID": 0,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 5,
+    "runningInstances": 0,
+    "visible": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": [
+        {
+          "deviceId": 336,
+          "eventName": "CentralSceneEvent",
+          "args": [
+            "3",
+            "Pressed"
+          ]
+        }
+      ]
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 217
+  },
+  {
+    "id": 70,
+    "name": "客廳窗簾 客廳",
+    "type": "com.fibaro.magicScene",
+    "properties": "{\"conditionDeviceId\":336,\"conditionObjectType\":\"device\",\"conditionId\":\"condition_centralSceneEvent4Pressed_336\",\"conditionLua\":\"true\",\"conditionValue\":\"\",\"trigger\":\"336 CentralSceneEvent 4 Pressed\",\"actionDeviceId\":303,\"actionObjectType\":\"device\",\"actionId\":\"action_close_303\",\"actionLua\":\"fibaro:call(303, 'close')\",\"actionValue\":\"\",\"looping\":false}",
+    "roomID": 0,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": [
+        {
+          "deviceId": 336,
+          "eventName": "CentralSceneEvent",
+          "args": [
+            "4",
+            "Pressed"
+          ]
+        }
+      ]
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 218
+  },
+  {
+    "id": 71,
+    "name": "簡報",
+    "type": "",
+    "properties": "",
+    "roomID": 29,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 206
+  },
+  {
+    "id": 72,
+    "name": "搖手機下一首",
+    "type": "",
+    "properties": "",
+    "roomID": 29,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 4,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 214
+  },
+  {
+    "id": 73,
+    "name": "拍照模式",
+    "type": "",
+    "properties": "",
+    "roomID": 29,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 4,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 224
+  },
+  {
+    "id": 74,
+    "name": "opening",
+    "type": "",
+    "properties": "",
+    "roomID": 29,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 4,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 285
+  },
+  {
+    "id": 75,
+    "name": "聲音調大",
+    "type": "",
+    "properties": "",
+    "roomID": 29,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 222
+  },
+  {
+    "id": 76,
+    "name": "聲音調小",
+    "type": "",
+    "properties": "",
+    "roomID": 29,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 223
+  },
+  {
+    "id": 77,
+    "name": "PPT模式",
+    "type": "",
+    "properties": "",
+    "roomID": 29,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 221
+  },
+  {
+    "id": 78,
+    "name": "拍手",
+    "type": "",
+    "properties": "",
+    "roomID": 29,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 225
+  },
+  {
+    "id": 79,
+    "name": "對講機開門",
+    "type": "",
+    "properties": "",
+    "roomID": 26,
+    "iconID": 1026,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 226
+  },
+  {
+    "id": 80,
+    "name": "派對模式",
+    "type": "",
+    "properties": "",
+    "roomID": 20,
+    "iconID": 1025,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 5,
+    "runningInstances": 0,
+    "visible": false,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 81
+  },
+  {
+    "id": 82,
+    "name": "眼睛開門",
+    "type": "",
+    "properties": "",
+    "roomID": 26,
+    "iconID": 5,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": false,
+    "isLua": false,
+    "triggers": {
+      "properties": [
+        {
+          "id": 221,
+          "name": "value"
+        }
+      ],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 242
+  },
+  {
+    "id": 83,
+    "name": "welcometest",
+    "type": "",
+    "properties": "",
+    "roomID": 0,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": true,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 243
+  },
+  {
+    "id": 85,
+    "name": "New Scene",
+    "type": "",
+    "properties": "",
+    "roomID": 0,
+    "iconID": 5,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": true,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": false,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 250
+  },
+  {
+    "id": 86,
+    "name": "熱紅茶通知",
+    "type": "",
+    "properties": "",
+    "roomID": 0,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 252
+  },
+  {
+    "id": 87,
+    "name": "熱綠茶通知",
+    "type": "",
+    "properties": "",
+    "roomID": 0,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 253
+  },
+  {
+    "id": 88,
+    "name": "濾掛式咖啡通知",
+    "type": "",
+    "properties": "",
+    "roomID": 0,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 254
+  },
+  {
+    "id": 89,
+    "name": "膠囊咖啡通知",
+    "type": "",
+    "properties": "",
+    "roomID": 0,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 255
+  },
+  {
+    "id": 90,
+    "name": "麥香紅茶通知",
+    "type": "",
+    "properties": "",
+    "roomID": 0,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 256
+  },
+  {
+    "id": 91,
+    "name": "溫開水通知",
+    "type": "",
+    "properties": "",
+    "roomID": 0,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 257
+  },
+  {
+    "id": 92,
+    "name": "可樂汽水通知",
+    "type": "",
+    "properties": "",
+    "roomID": 0,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 258
+  },
+  {
+    "id": 93,
+    "name": "瓦斯警報",
+    "type": "",
+    "properties": "",
+    "roomID": 29,
+    "iconID": 5,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 3,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": false,
+    "triggers": {
+      "properties": [
+        {
+          "id": 438,
+          "name": "value"
+        }
+      ],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 259
+  },
+  {
+    "id": 94,
+    "name": "瓦斯漏氣通知",
+    "type": "",
+    "properties": "",
+    "roomID": 29,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 262
+  },
+  {
+    "id": 95,
+    "name": "APPLE TV (B)",
+    "type": "",
+    "properties": "",
+    "roomID": 20,
+    "iconID": 4,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 5,
+    "runningInstances": 0,
+    "visible": false,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 283
+  },
+  {
+    "id": 96,
+    "name": "吧檯燈 吧檯",
+    "type": "com.fibaro.magicScene",
+    "properties": "{\"conditionDeviceId\":336,\"conditionObjectType\":\"device\",\"conditionId\":\"condition_centralSceneEvent5HeldDown_336\",\"conditionLua\":\"true\",\"conditionValue\":\"\",\"conditionRooms\":[],\"trigger\":\"336 CentralSceneEvent 5 Released\\n336 CentralSceneEvent 5 HeldDown\",\"actionDeviceId\":195,\"actionObjectType\":\"device\",\"actionId\":\"action_levelUp_195\",\"actionLua\":\"local deviceId = 195\\nif (sourceTrigger['type'] == 'event') then\\nif (sourceTrigger['event']['data']['keyAttribute'] == 'HeldDown') then\\nfibaro:call(deviceId, 'startLevelIncrease')\\nelse\\nfibaro:call(deviceId, 'stopLevelChange')\\nend\\nelseif (sourceTrigger['type'] == 'other') then\\nfibaro:call(deviceId, 'startLevelIncrease')\\nend\",\"actionValue\":\"\",\"actionRooms\":[],\"looping\":true}",
+    "roomID": 29,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": [
+        {
+          "deviceId": 336,
+          "eventName": "CentralSceneEvent",
+          "args": [
+            "5",
+            "Released"
+          ]
+        },
+        {
+          "deviceId": 336,
+          "eventName": "CentralSceneEvent",
+          "args": [
+            "5",
+            "HeldDown"
+          ]
+        }
+      ]
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 302
+  },
+  {
+    "id": 97,
+    "name": "吧檯燈 吧檯",
+    "type": "com.fibaro.magicScene",
+    "properties": "{\"conditionDeviceId\":336,\"conditionObjectType\":\"device\",\"conditionId\":\"condition_centralSceneEvent6HeldDown_336\",\"conditionLua\":\"true\",\"conditionValue\":\"\",\"conditionRooms\":[],\"trigger\":\"336 CentralSceneEvent 6 Released\\n336 CentralSceneEvent 6 HeldDown\",\"actionDeviceId\":195,\"actionObjectType\":\"device\",\"actionId\":\"action_levelDown_195\",\"actionLua\":\"local deviceId = 195\\nif (sourceTrigger['type'] == 'event') then\\nif (sourceTrigger['event']['data']['keyAttribute'] == 'HeldDown') then\\nfibaro:call(deviceId, 'startLevelDecrease')\\nelse\\nfibaro:call(deviceId, 'stopLevelChange')\\nend\\nelseif (sourceTrigger['type'] == 'other') then\\nfibaro:call(deviceId, 'startLevelDecrease')\\nend\",\"actionValue\":\"\",\"actionRooms\":[],\"looping\":true}",
+    "roomID": 29,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": [
+        {
+          "deviceId": 336,
+          "eventName": "CentralSceneEvent",
+          "args": [
+            "6",
+            "Released"
+          ]
+        },
+        {
+          "deviceId": 336,
+          "eventName": "CentralSceneEvent",
+          "args": [
+            "6",
+            "HeldDown"
+          ]
+        }
+      ]
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 303
+  },
+  {
+    "id": 98,
+    "name": "iKettleFeedBack",
+    "type": "",
+    "properties": "",
+    "roomID": 0,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [
+        "iKettleFB"
+      ],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 305
+  },
+  {
+    "id": 100,
+    "name": "Power監看",
+    "type": "",
+    "properties": "",
+    "roomID": 0,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [
+        {
+          "id": 198,
+          "name": "value"
+        }
+      ],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 319
+  },
+  {
+    "id": 101,
+    "name": "New Scene",
+    "type": "",
+    "properties": "",
+    "roomID": 0,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [
+        {
+          "id": 198,
+          "name": "value"
+        }
+      ],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 320
+  },
+  {
+    "id": 102,
+    "name": "New Scene",
+    "type": "",
+    "properties": "",
+    "roomID": 0,
+    "iconID": 5,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": true,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": false,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 321
+  },
+  {
+    "id": 103,
+    "name": "人數偵測",
+    "type": "",
+    "properties": "",
+    "roomID": 0,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 5,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [
+        {
+          "id": 497,
+          "name": "value"
+        },
+        {
+          "id": 221,
+          "name": "value"
+        }
+      ],
+      "globals": [
+        "inOrOut"
+      ],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 325
+  },
+  {
+    "id": 106,
+    "name": "觸發警報Hue",
+    "type": "",
+    "properties": "",
+    "roomID": 0,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [
+        {
+          "id": 221,
+          "name": "value"
+        },
+        {
+          "id": 221,
+          "name": "armed"
+        }
+      ],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 334
+  },
+  {
+    "id": 108,
+    "name": "上警報Hue",
+    "type": "",
+    "properties": "",
+    "roomID": 0,
+    "iconID": 6,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [
+        {
+          "id": 221,
+          "name": "armed"
+        }
+      ],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 335
+  },
+  {
+    "id": 112,
+    "name": "搖手機下一首 活動",
+    "type": "com.fibaro.magicScene",
+    "properties": "{\"conditionDeviceId\":517,\"conditionObjectType\":\"device\",\"conditionId\":\"condition_centralSceneEvent1Pressed2_517\",\"conditionLua\":\"true\",\"conditionValue\":\"\",\"conditionRooms\":[],\"trigger\":\"517 CentralSceneEvent 1 Pressed2\",\"actionDeviceId\":72,\"actionObjectType\":\"scene\",\"actionId\":\"action_runScene_72\",\"actionLua\":\"fibaro:startScene(72);\",\"actionValue\":\"\",\"actionRooms\":[],\"looping\":false}",
+    "roomID": 20,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": [
+        {
+          "deviceId": 517,
+          "eventName": "CentralSceneEvent",
+          "args": [
+            "1",
+            "Pressed2"
+          ]
+        }
+      ]
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 339
+  },
+  {
+    "id": 113,
+    "name": "聲音調小 活動",
+    "type": "com.fibaro.magicScene",
+    "properties": "{\"conditionDeviceId\":517,\"conditionObjectType\":\"device\",\"conditionId\":\"condition_centralSceneEvent1HeldDown_517\",\"conditionLua\":\"true\",\"conditionValue\":\"\",\"conditionRooms\":[],\"trigger\":\"517 CentralSceneEvent 1 Released\\n517 CentralSceneEvent 1 HeldDown\",\"actionDeviceId\":76,\"actionObjectType\":\"scene\",\"actionId\":\"action_runScene_76\",\"actionLua\":\"fibaro:startScene(76);\",\"actionValue\":\"\",\"actionRooms\":[],\"looping\":true}",
+    "roomID": 20,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": [
+        {
+          "deviceId": 517,
+          "eventName": "CentralSceneEvent",
+          "args": [
+            "1",
+            "HeldDown"
+          ]
+        }
+      ]
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 340
+  },
+  {
+    "id": 116,
+    "name": "Apple模式(mHome)",
+    "type": "",
+    "properties": "",
+    "roomID": 20,
+    "iconID": 1030,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "劇院",
+    "liliStopCommand": "",
+    "sortOrder": 76
+  },
+  {
+    "id": 117,
+    "name": "閱讀模式(mHome)",
+    "type": "",
+    "properties": "",
+    "roomID": 20,
+    "iconID": 1009,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "閱讀",
+    "liliStopCommand": "",
+    "sortOrder": 51
+  },
+  {
+    "id": 118,
+    "name": "音樂模式(mHome)",
+    "type": "",
+    "properties": "",
+    "roomID": 20,
+    "iconID": 1003,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "音樂",
+    "liliStopCommand": "",
+    "sortOrder": 50
+  },
+  {
+    "id": 119,
+    "name": "派對模式(mHome)",
+    "type": "",
+    "properties": "",
+    "roomID": 20,
+    "iconID": 1028,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "派對",
+    "liliStopCommand": "",
+    "sortOrder": 52
+  },
+  {
+    "id": 120,
+    "name": "吧檯模式(mHome)",
+    "type": "",
+    "properties": "",
+    "roomID": 22,
+    "iconID": 1029,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 167
+  },
+  {
+    "id": 121,
+    "name": "用餐模式(mHome)",
+    "type": "",
+    "properties": "",
+    "roomID": 21,
+    "iconID": 1001,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "用餐",
+    "liliStopCommand": "",
+    "sortOrder": 357
+  },
+  {
+    "id": 122,
+    "name": "開啟監視系統(mHome)",
+    "type": "",
+    "properties": "",
+    "roomID": 24,
+    "iconID": 1018,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 15
+  },
+  {
+    "id": 123,
+    "name": "環境資訊系統(mHome)",
+    "type": "",
+    "properties": "",
+    "roomID": 24,
+    "iconID": 1008,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 16
+  },
+  {
+    "id": 124,
+    "name": "派對模式(mHome) teset",
+    "type": "com.fibaro.magicScene",
+    "properties": "{\"conditionDeviceId\":517,\"conditionObjectType\":\"device\",\"conditionId\":\"condition_centralSceneEvent1Pressed_517\",\"conditionLua\":\"true\",\"conditionValue\":\"\",\"conditionRooms\":[],\"trigger\":\"517 CentralSceneEvent 1 Pressed\",\"actionDeviceId\":119,\"actionObjectType\":\"scene\",\"actionId\":\"action_runScene_119\",\"actionLua\":\"fibaro:startScene(119);\",\"actionValue\":\"\",\"actionRooms\":[],\"looping\":false}",
+    "roomID": 20,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": [
+        {
+          "deviceId": 517,
+          "eventName": "CentralSceneEvent",
+          "args": [
+            "1",
+            "Pressed"
+          ]
+        }
+      ]
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 358
+  },
+  {
+    "id": 125,
+    "name": "客廳全關(mHome)",
+    "type": "",
+    "properties": "",
+    "roomID": 20,
+    "iconID": 1014,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 78
+  },
+  {
+    "id": 126,
+    "name": "餐廳全關(mHome)",
+    "type": "",
+    "properties": "",
+    "roomID": 21,
+    "iconID": 1014,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 359
+  },
+  {
+    "id": 127,
+    "name": "全關(mHome)",
+    "type": "",
+    "properties": "",
+    "roomID": 26,
+    "iconID": 1006,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "出門",
+    "liliStopCommand": "",
+    "sortOrder": 157
+  },
+  {
+    "id": 128,
+    "name": "吧檯全關(mHome)",
+    "type": "",
+    "properties": "",
+    "roomID": 22,
+    "iconID": 1014,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 360
+  },
+  {
+    "id": 129,
+    "name": "下午茶咖啡模式(mHome)",
+    "type": "",
+    "properties": "",
+    "roomID": 21,
+    "iconID": 1013,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 361
+  },
+  {
+    "id": 130,
+    "name": "影片介紹(mHome)",
+    "type": "",
+    "properties": "",
+    "roomID": 20,
+    "iconID": 1023,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 77
+  },
+  {
+    "id": 131,
+    "name": "午餐模式",
+    "type": "",
+    "properties": "",
+    "roomID": 20,
+    "iconID": 1001,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": true,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "isLua": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": []
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 362
+  },
+  {
+    "id": 132,
+    "name": "派對模式(mHome) 客廳",
+    "type": "com.fibaro.magicScene",
+    "properties": "{\"conditionDeviceId\":544,\"conditionObjectType\":\"device\",\"conditionId\":\"condition_centralSceneEvent1Pressed_544\",\"conditionLua\":\"true\",\"conditionValue\":\"\",\"conditionRooms\":[],\"trigger\":\"544 CentralSceneEvent 1 Pressed\",\"actionDeviceId\":119,\"actionObjectType\":\"scene\",\"actionId\":\"action_runScene_119\",\"actionLua\":\"fibaro:startScene(119);\",\"actionValue\":\"\",\"actionRooms\":[],\"looping\":false}",
+    "roomID": 20,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": [
+        {
+          "deviceId": 544,
+          "eventName": "CentralSceneEvent",
+          "args": [
+            "1",
+            "Pressed"
+          ]
+        }
+      ]
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 366
+  },
+  {
+    "id": 133,
+    "name": "搖手機下一首 活動 客廳",
+    "type": "com.fibaro.magicScene",
+    "properties": "{\"conditionDeviceId\":544,\"conditionObjectType\":\"device\",\"conditionId\":\"condition_centralSceneEvent1Pressed2_544\",\"conditionLua\":\"true\",\"conditionValue\":\"\",\"conditionRooms\":[],\"trigger\":\"544 CentralSceneEvent 1 Pressed2\",\"actionDeviceId\":112,\"actionObjectType\":\"scene\",\"actionId\":\"action_runScene_112\",\"actionLua\":\"fibaro:startScene(112);\",\"actionValue\":\"\",\"actionRooms\":[],\"looping\":false}",
+    "roomID": 20,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": [
+        {
+          "deviceId": 544,
+          "eventName": "CentralSceneEvent",
+          "args": [
+            "1",
+            "Pressed2"
+          ]
+        }
+      ]
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 367
+  },
+  {
+    "id": 134,
+    "name": "聲音調小 活動 客廳",
+    "type": "com.fibaro.magicScene",
+    "properties": "{\"conditionDeviceId\":544,\"conditionObjectType\":\"device\",\"conditionId\":\"condition_centralSceneEvent1HeldDown_544\",\"conditionLua\":\"true\",\"conditionValue\":\"\",\"conditionRooms\":[],\"trigger\":\"544 CentralSceneEvent 1 Released\\n544 CentralSceneEvent 1 HeldDown\",\"actionDeviceId\":113,\"actionObjectType\":\"scene\",\"actionId\":\"action_runScene_113\",\"actionLua\":\"fibaro:startScene(113);\",\"actionValue\":\"\",\"actionRooms\":[],\"looping\":true}",
+    "roomID": 20,
+    "runConfig": "TRIGGER_AND_MANUAL",
+    "autostart": false,
+    "protectedByPIN": false,
+    "killable": false,
+    "maxRunningInstances": 2,
+    "runningInstances": 0,
+    "visible": true,
+    "triggers": {
+      "properties": [],
+      "globals": [],
+      "events": [
+        {
+          "deviceId": 544,
+          "eventName": "CentralSceneEvent",
+          "args": [
+            "1",
+            "HeldDown"
+          ]
+        }
+      ]
+    },
+    "liliStartCommand": "",
+    "liliStopCommand": "",
+    "sortOrder": 368
+  }
+]
