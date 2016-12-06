@@ -46,11 +46,7 @@ HC2.prototype.get_visible_room_scenes = function() {
                     sceneName: t_scene.name,
                     roomName: roomName
                 });
-                console.log(JSON.stringify({
-                    sceneID: t_scene.id,
-                    sceneName: t_scene.name,
-                    roomName: roomName
-                }));
+                //console.log(JSON.stringify({sceneID: t_scene.id,sceneName: t_scene.name,roomName: roomName}));
             }
         }
     }
