@@ -55,7 +55,7 @@ function HC2ScenePlatform(log, config, api) {
     }.bind(this));
 
     this.requestServer.listen(18083, function() {
-        platform.log("Platform Server Listening...");
+        log("Platform Server Listening...");
     });
     
 	if (api) {
@@ -67,7 +67,7 @@ function HC2ScenePlatform(log, config, api) {
       	// Or start discover new accessories
       	this.api.on('didFinishLaunching', function() {
         	this.log("Plugin - DidFinishLaunching");
-			this.addHC2Scenes();
+			//this.addHC2Scenes();
       	}.bind(this));
  	} else {
         this.log('no api object');
