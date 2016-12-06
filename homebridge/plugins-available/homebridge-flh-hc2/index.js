@@ -15,10 +15,10 @@ module.exports = function(homebridge) {
 
     // For platform plugin to be considered as dynamic platform plugin,
     // registerPlatform(pluginName, platformName, constructor, dynamic), dynamic must be true
-    homebridge.registerPlatform("homebridge-flh-hc2", "HC2ScenePlatfrom", HC2ScenePlatfrom);
+    homebridge.registerPlatform("homebridge-flh-hc2", "HC2ScenePlatform", HC2ScenePlatform);
 }
 
-function HC2ScenePlatfrom(log, config, api) {
+function HC2ScenePlatform(log, config, api) {
 	this.config = config || {};
 	this.api = api;
 	this.accessories = [];
@@ -35,10 +35,12 @@ function HC2ScenePlatfrom(log, config, api) {
         	this.log("Plugin - DidFinishLaunching");
 			this.addHC2Scenes();
       	}.bind(this));
- 	}
+ 	} else {
+        this.log('no api object');
+    }
 }
 
-HC2ScenePlatfrom.prototype.addHC2Scenes = function() {
+HC2ScenePlatform.prototype.addHC2Scenes = function() {
     this.log('start adding HC2 Scenes ...');
     this.log('finish adding HC2 Scenes');
 }
