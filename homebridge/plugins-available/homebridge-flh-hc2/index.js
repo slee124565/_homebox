@@ -19,6 +19,8 @@ module.exports = function(homebridge) {
 }
 
 function HC2ScenePlatform(log, config, api) {
+    log("HC2ScenePlatform Init");
+    
 	this.config = config || {};
 	this.api = api;
 	this.accessories = [];
@@ -38,6 +40,15 @@ function HC2ScenePlatform(log, config, api) {
  	} else {
         this.log('no api object');
     }
+}
+
+HC2ScenePlatform.prototype.configureAccessory = function(accessory) {
+    this.log(accessory.displayName, "Configure Accessory");
+}
+
+HC2ScenePlatform.prototype.configurationRequestHandler = function(context, request, callback) {
+    this.log(accessory.displayName, "Configure Request Handler");
+    
 }
 
 HC2ScenePlatform.prototype.addHC2Scenes = function() {
