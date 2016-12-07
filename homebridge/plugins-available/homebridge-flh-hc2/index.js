@@ -28,7 +28,7 @@ module.exports = function(homebridge) {
 function HC2ScenePlatform(log, config, api) {
     log("HC2ScenePlatform Init");
     
-	this._accessories = {};
+	this.accessories = {};
 
     this.config = config || {};
 	this.api = api;
@@ -132,6 +132,7 @@ HC2ScenePlatform.prototype.configureAccessory = function(accessory) {
     var self = this;
     self.log(accessory.displayName, "Configure Accessory");
 
+/*
     accessory.on('identify', 
         function(paired, callback) {
             self.log(accessory.displayName, "Identify!!!");
@@ -149,6 +150,9 @@ HC2ScenePlatform.prototype.configureAccessory = function(accessory) {
                     self.log('accessory ' + accessoryName +  ' get service characteristic value ' + value);
                     callback();
                 });
+
+*/
+    self.log(JSON.stringify(self.accessories));
     
     self.accessories[accessory.UUID] = accessory;
 }
