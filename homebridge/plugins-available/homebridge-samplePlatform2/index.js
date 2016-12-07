@@ -90,6 +90,11 @@ SamplePlatform.prototype.configureAccessory = function(accessory) {
     for (var key in obj) {
         this.log('api._dynamicPlatforms key ' + key);
     }
+
+    obj = accessory;
+    for (var key in obj) {
+        this.log('accessory key ' + key);
+    }
     
   var platform = this;
 
