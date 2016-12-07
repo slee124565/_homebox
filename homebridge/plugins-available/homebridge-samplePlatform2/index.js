@@ -73,6 +73,24 @@ function SamplePlatform(log, config, api) {
 SamplePlatform.prototype.configureAccessory = function(accessory) {
   this.log(accessory.displayName, "Configure Accessory");
     this.log('before configure accessories count ' + this.accessories.length);
+    var obj;
+    obj = this.api._accessories;
+    for (var key in obj) {
+        this.log('api._accessories key ' + key);
+    }
+    obj = this.api._platforms;
+    for (var key in obj) {
+        this.log('api._platforms key ' + key);
+    }
+    obj = this.api._configurableAccessories;
+    for (var key in obj) {
+        this.log('api._configurableAccessories key ' + key);
+    }
+    obj = this.api._dynamicPlatforms;
+    for (var key in obj) {
+        this.log('api._dynamicPlatforms key ' + key);
+    }
+    
   var platform = this;
 
   // set the accessory to reachable if plugin can currently process the accessory
@@ -259,7 +277,7 @@ function startScene() {
                     'auth': hc2Username + ':' + hc2Password
                  };
     var request = http.request(header, function(response){
-                        console.log('statusCode: ' + response.statusCode);
+                        //console.log('statusCode: ' + response.statusCode);
     });
     request.end();
 
