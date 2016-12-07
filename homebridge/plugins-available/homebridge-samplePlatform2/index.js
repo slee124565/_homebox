@@ -69,6 +69,7 @@ function SamplePlatform(log, config, api) {
 // Update current value
 SamplePlatform.prototype.configureAccessory = function(accessory) {
   this.log(accessory.displayName, "Configure Accessory");
+    this.log('before configure accessories count ' + this.accessories.length);
   var platform = this;
 
   // set the accessory to reachable if plugin can currently process the accessory
@@ -95,6 +96,7 @@ SamplePlatform.prototype.configureAccessory = function(accessory) {
   }
 
   this.accessories.push(accessory);
+    this.log('after configure accessories count ' + this.accessories.length);
 }
 
 //Handler will be invoked when user try to config your plugin
