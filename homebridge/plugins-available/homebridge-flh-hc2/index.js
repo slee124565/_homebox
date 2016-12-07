@@ -48,7 +48,7 @@ function HC2ScenePlatform(log, config, api) {
         }*/
 
         if (request.url == "/remove") {
-            this.removeAccessory();
+            this.removeAccessories();
             response.writeHead(204);
             response.end();
         }
@@ -95,33 +95,57 @@ HC2ScenePlatform.prototype.addHC2Scenes = function() {
                  + ' ' + t_scene.sceneName 
                  + ' with room ' + t_scene.roomName
                  + ' with uuid ' + uuid);
-        
-        /*
-        var t_accessory = this.getPlatformAccessory(uuid);
-
-        if (t_accessory == null) {
-            
-            var newAccessory = new Accessory(accessoryName, uuid);
-            
-            newAccessory.on('identify', function(paired, callback) {
-                platform.log(accessory.displayName, "Identify!!!");
-                callback();
-            });
-            newAccessory.addService(Service.StatelessProgrammableSwitch, "劇院模式")
-                .getCharacteristic(Characteristic.On)
-                .on('set', function(value, callback) {
-                        platform.log(accessory.displayName, "Light -> " + value);
-                        callback();
-            });
-
-            
-        }*/
-        
+        if (t_scene.roomName.charAt(0) != "_")
+            this.addSceneAccessory(uuid, t_scene.sceneID, t_scene.roomName+t_scene.sceneName);
+        else
+            this.addSceneAccessory(uuid, t_scene.sceneID, t_scene.sceneName);
     }
     
 }
 
-HC2ScenePlatform.prototype.removeAccessory = function() {
+HC2ScenePlatform.prototype.addSceneAccessory = function(uuid, sceneID, accessoryName) {
+    var self = this;
+    self.log('Add Scene Accessory (' + sceneID + ', ' + accessoryName + ', ' + uuid + ')');
+    return
+    
+    var accessory = this.get_or_create_accessory(uuid, accessoryName);
+    
+    accessory.on('identify', function(paired, callback) {
+        self.log(accessory.displayName, "Identify!!!");
+        callback();
+    });
+
+    // Plugin can save context on accessory
+    // To help restore accessory in configureAccessory()
+    // newAccessory.context.something = "Something"
+
+    // Make sure you provided a name for service otherwise it may not visible in some HomeKit apps.
+    accessory.addService(Service.Lightbulb, "劇院模式")
+                .getCharacteristic(Characteristic.On)
+                .on('set', function(value, callback) {
+                    platform.log(accessory.displayName, "Light -> " + value);
+                    callback();
+                });
+
+    accessory.addService(Service.StatelessProgrammableSwitch,accessoryName)
+                .getCharacteristic(Characteristic.ProgrammableSwitchEvent)
+                .on();
+    self.accessories.push(newAccessory);
+    self.api.registerPlatformAccessories("homebridge-samplePlatform2", "SamplePlatform", [newAccessory]);
+    
+}
+
+HC2ScenePlatform.prototype.configureAccessory = function(accessory) {
+    this.log(accessory.displayName, "Configure Accessory");
+    
+}
+
+HC2ScenePlatform.prototype.configurationRequestHandler = function(context, request, callback) {
+    this.log(accessory.displayName, "Configure Request Handler");
+    
+}
+
+HC2ScenePlatform.prototype.removeAccessories = function() {
     this.log("Remove Accessory");
     
     this.api.unregisterPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, this.accessories);
@@ -132,23 +156,4 @@ HC2ScenePlatform.prototype.getPlatformAccessory = function(uuid) {
     this.log('get Platform Accessory ' + uuid);
 }
 
-HC2ScenePlatform.prototype.existingAccessory = function(sceneID) {
-    
-	for (var a in this.accessories) {
-		if (this.accessories[a].context.scendID == sceneID) {
-			return this.accessories[a];
-		}
-	}
-    
-	return null;
-}
-
-HC2ScenePlatform.prototype.configureAccessory = function(accessory) {
-    this.log(accessory.displayName, "Configure Accessory");
-}
-
-HC2ScenePlatform.prototype.configurationRequestHandler = function(context, request, callback) {
-    this.log(accessory.displayName, "Configure Request Handler");
-    
-}
 
