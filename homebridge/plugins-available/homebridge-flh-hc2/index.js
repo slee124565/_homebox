@@ -2,6 +2,7 @@
 
 var PLUGIN_NAME = 'homebridge-flh-hc2';
 var PLATFORM_NAME = 'HC2ScenePlatform'
+var WEB_API_PORT = 18083;
 
 var http = require('http');
 var HC2 = require('./lib/hc2');
@@ -27,10 +28,13 @@ module.exports = function(homebridge) {
 function HC2ScenePlatform(log, config, api) {
     log("HC2ScenePlatform Init");
     
-	this.config = config || {};
+	this._accessories = {};
+
+    this.config = config || {};
 	this.api = api;
-	this.accessories = [];
   	this.log = log;
+    this.platformName = PLATFORM_NAME;
+    this.pluginName = PLUGIN_NAME;
 
     this.requestServer = http.createServer(function(request, response) {
         
@@ -54,24 +58,13 @@ function HC2ScenePlatform(log, config, api) {
         }
     }.bind(this));
 
-    this.requestServer.listen(18083, function() {
-        log("Platform Server Listening...");
+    this.requestServer.listen(WEB_API_PORT, function() {
+        log("Platform " + this.platformName + " Server Listening...");
     });
     
-	if (api) {
-    	// Save the API object as plugin needs to register new accessory via this object.
-      	this.api = api;
-
-      	// Listen to event "didFinishLaunching", this means homebridge already finished loading cached accessories
-	    // Platform Plugin should only register new accessory that doesn't exist in homebridge after this event.
-      	// Or start discover new accessories
-      	this.api.on('didFinishLaunching', function() {
-        	this.log("Plugin - DidFinishLaunching");
-			//this.addHC2Scenes();
-      	}.bind(this));
- 	} else {
-        this.log('no api object');
-    }
+    this.api.on('didFinishLaunching', function() {
+        this.log("Plugin - DidFinishLaunching");
+    }.bind(this));
 }
 
 HC2ScenePlatform.prototype.addHC2Scenes = function() {
@@ -105,39 +98,57 @@ HC2ScenePlatform.prototype.addHC2Scenes = function() {
 
 HC2ScenePlatform.prototype.addSceneAccessory = function(uuid, sceneID, accessoryName) {
     var self = this;
-    self.log('Add Scene Accessory (' + sceneID + ', ' + accessoryName + ', ' + uuid + ')');
-    return
+    var accessory;
     
-    var accessory = this.get_or_create_accessory(uuid, accessoryName);
+    if (self.accessories[uuid] === undefined) {
+
+        self.log('Create New Platform Accessory ' + accessoryName);
+        accessory = new Accessory(accessoryName, uuid);
+        self.api.registerPlatformAccessories(self.pluginName, self.platformName, [accessory]);
+    } else {
+        self.log('Update Platform Accessory ' + accessoryName);
+        self.api.updatePlatformAccessories(self.accessories[uuid]);
+    }
+        
     
-    accessory.on('identify', function(paired, callback) {
-        self.log(accessory.displayName, "Identify!!!");
-        callback();
-    });
+    self.configureAccessory(accessory);
+    
+}
+
+HC2ScenePlatform.prototype.get_or_create_accessory(uuid, accessoryName) {
+    var self = this;
+    if (self.accessories[uuid] === undefined) {
+        self.log('Create New Accessory ' + accessoryName);
+        var accessory = new Accessory(accessoryName, uuid);
+        self.accessories[uuid] = accessory;
+    }
+    return self.accessories[uuid];
+    
+}
+
+HC2ScenePlatform.prototype.configureAccessory = function(accessory) {
+    var self = this;
+    self.log(accessory.displayName, "Configure Accessory");
+
+    accessory.on('identify', 
+        function(paired, callback) {
+            self.log(accessory.displayName, "Identify!!!");
+            callback();
+        });
 
     // Plugin can save context on accessory
     // To help restore accessory in configureAccessory()
     // newAccessory.context.something = "Something"
 
     // Make sure you provided a name for service otherwise it may not visible in some HomeKit apps.
-    accessory.addService(Service.Lightbulb, "劇院模式")
+    accessory.addService(Service.Lightbulb, accessoryName)
                 .getCharacteristic(Characteristic.On)
                 .on('set', function(value, callback) {
-                    platform.log(accessory.displayName, "Light -> " + value);
+                    self.log('accessory ' + accessoryName +  ' get service characteristic value ' + value);
                     callback();
                 });
-
-    accessory.addService(Service.StatelessProgrammableSwitch,accessoryName)
-                .getCharacteristic(Characteristic.ProgrammableSwitchEvent)
-                .on();
-    self.accessories.push(newAccessory);
-    self.api.registerPlatformAccessories("homebridge-samplePlatform2", "SamplePlatform", [newAccessory]);
     
-}
-
-HC2ScenePlatform.prototype.configureAccessory = function(accessory) {
-    this.log(accessory.displayName, "Configure Accessory");
-    
+    self.accessories[accessory.UUID] = accessory;
 }
 
 HC2ScenePlatform.prototype.configurationRequestHandler = function(context, request, callback) {
@@ -146,10 +157,15 @@ HC2ScenePlatform.prototype.configurationRequestHandler = function(context, reque
 }
 
 HC2ScenePlatform.prototype.removeAccessories = function() {
-    this.log("Remove Accessory");
+    var self = this;
+    self.log('Remove Platform ' + self.platformName + ' Accessory');
     
-    this.api.unregisterPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, this.accessories);
-    this.accessories = [];
+    var accessories = self.accessories.map(
+        function(value, index){
+            return [value];
+        });
+    this.api.unregisterPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, accessories);
+    this.accessories = {};
 }
 
 HC2ScenePlatform.prototype.getPlatformAccessory = function(uuid) {
