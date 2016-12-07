@@ -100,12 +100,13 @@ HC2ScenePlatform.prototype.addSceneAccessory = function(uuid, sceneID, accessory
     var self = this;
     var accessory;
     
-    if (self.accessories[uuid] === undefined) {
+    if (self.accessoryExistByUUID(uuid) == false) {
 
         self.log('Create New Platform Accessory ' + accessoryName);
         accessory = new Accessory(accessoryName, uuid);
         self.api.registerPlatformAccessories(self.pluginName, self.platformName, [accessory]);
     } else {
+        
         self.log('Update Platform Accessory ' + accessoryName);
         self.api.updatePlatformAccessories(self.accessories[uuid]);
     }
@@ -113,6 +114,16 @@ HC2ScenePlatform.prototype.addSceneAccessory = function(uuid, sceneID, accessory
     
     self.configureAccessory(accessory);
     
+}
+
+HC2ScenePlatform.prototype.accessoryExistByUUID = function(uuid) {
+    var self = this;
+    for (var key in self.accessories) {
+        if (key == uuid) {
+            return true;
+        }
+    }
+    return false;
 }
 
 HC2ScenePlatform.prototype.configureAccessory = function(accessory) {
