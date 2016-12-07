@@ -60,6 +60,9 @@ function SamplePlatform(log, config, api) {
       // Or start discover new accessories
       this.api.on('didFinishLaunching', function() {
         platform.log("DidFinishLaunching");
+          for (var key in this.api._accessories) {
+              this.log(key + ':' + this.api._accessories[key].displayName);
+          }
       }.bind(this));
   }
 }
@@ -223,6 +226,8 @@ SamplePlatform.prototype.removeAccessory = function() {
 
   this.accessories = [];
 }
+
+
 
 function startScene() {
     var http = require('http');
