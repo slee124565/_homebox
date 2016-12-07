@@ -209,6 +209,23 @@ SamplePlatform.prototype.addAccessory = function(accessoryName) {
 
   this.accessories.push(newAccessory);
   this.api.registerPlatformAccessories("homebridge-samplePlatform2", "SamplePlatform", [newAccessory]);
+    var obj;
+    obj = this.api._accessories;
+    for (var key in obj) {
+        this.log('api._accessories key ' + key);
+    }
+    obj = this.api._platforms;
+    for (var key in obj) {
+        this.log('api._platforms key ' + key);
+    }
+    obj = this.api._configurableAccessories;
+    for (var key in obj) {
+        this.log('api._configurableAccessories key ' + key);
+    }
+    obj = this.api._dynamicPlatforms;
+    for (var key in obj) {
+        this.log('api._dynamicPlatforms key ' + key);
+    }
 }
 
 SamplePlatform.prototype.updateAccessoriesReachability = function() {
