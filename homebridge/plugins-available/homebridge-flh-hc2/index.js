@@ -104,7 +104,9 @@ HC2ScenePlatform.prototype.addSceneAccessory = function(uuid, sceneID, accessory
 
         self.log('Create New Platform Accessory ' + accessoryName);
         accessory = new Accessory(accessoryName, uuid);
+        accessory.context['displayName'] = accessoryName;
         self.api.registerPlatformAccessories(self.pluginName, self.platformName, [accessory]);
+        
     } else {
         
         self.log('Update Platform Accessory ' + accessoryName);
@@ -141,7 +143,7 @@ HC2ScenePlatform.prototype.configureAccessory = function(accessory) {
     // newAccessory.context.something = "Something"
 
     // Make sure you provided a name for service otherwise it may not visible in some HomeKit apps.
-    accessory.addService(Service.Lightbulb, accessoryName)
+    accessory.addService(Service.Lightbulb, accessory.context['displayName'])
                 .getCharacteristic(Characteristic.On)
                 .on('set', function(value, callback) {
                     self.log('accessory ' + accessoryName +  ' get service characteristic value ' + value);
