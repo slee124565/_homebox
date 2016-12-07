@@ -115,17 +115,6 @@ HC2ScenePlatform.prototype.addSceneAccessory = function(uuid, sceneID, accessory
     
 }
 
-HC2ScenePlatform.prototype.get_or_create_accessory(uuid, accessoryName) {
-    var self = this;
-    if (self.accessories[uuid] === undefined) {
-        self.log('Create New Accessory ' + accessoryName);
-        var accessory = new Accessory(accessoryName, uuid);
-        self.accessories[uuid] = accessory;
-    }
-    return self.accessories[uuid];
-    
-}
-
 HC2ScenePlatform.prototype.configureAccessory = function(accessory) {
     var self = this;
     self.log(accessory.displayName, "Configure Accessory");
