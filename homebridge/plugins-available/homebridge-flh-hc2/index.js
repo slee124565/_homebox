@@ -91,6 +91,8 @@ HC2ScenePlatform.prototype.configureAccessory = function(accessory) {
     .setValue(0);
 
     self.accessories[accessory.UUID] = accessory;
+    
+    self.log('current accessory count ' + self.accessories.length);
 
 }
 
@@ -186,8 +188,8 @@ HC2ScenePlatform.prototype.addSceneAccessory = function(sceneID, accessoryName) 
     } else {
         self.log('scene accessory ' + accessoryName + ' exist, skip.');
     }
-     
-
+    
+    self.log('current accessory count ' + self.accessories.length);
 }
 
 HC2ScenePlatform.prototype.removeAccessory = function(accessory) {
