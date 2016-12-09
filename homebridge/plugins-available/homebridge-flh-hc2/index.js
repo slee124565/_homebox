@@ -28,10 +28,9 @@ module.exports = function(homebridge) {
 function HC2ScenePlatform(log, config, api) {
     log("HC2ScenePlatform Init");
     
-	this.accessories = {};
+	this.accessories = {}; // uuid -> sceneAccessory
 
     this.config = config || {};
-	this.api = api;
   	this.log = log;
     this.platformName = PLATFORM_NAME;
     this.pluginName = PLUGIN_NAME;
@@ -62,13 +61,31 @@ function HC2ScenePlatform(log, config, api) {
         log("Platform " + this.platformName + " Server Listening...");
     });
     
-    this.api.on('didFinishLaunching', function() {
-        this.log("Plugin - DidFinishLaunching");
-    }.bind(this));
+    if (api) {
+
+        this.api = api;
+
+        this.api.on('didFinishLaunching', self.didFinishLaunching.bind(this));
+    }    
 }
 
-HC2ScenePlatform.prototype.addHC2Scenes = function() {
-    this.log('Add HC2 Room Scenes');
+HC2ScenePlatform.prototype.configureAccessory = function(accessory) {
+    var self = this;
+    self.log(accessory.displayName, "Configure Accessory");
+    
+    accessory.reachable = true;
+    accessory
+    .getService(Service.StatelessProgrammableSwitch)
+    .getCharacteristic(Characteristic.ProgrammableSwitchEvent)
+    .setValue(0);
+    
+    self.accessories[accessory.UUID] = accessory;
+
+}
+
+DashPlatform.prototype.didFinishLaunching = function() {
+    var self = this;
+    this.log('didFinishLaunching');
     
     var hc2 = new HC2();
     var roomScenes = hc2.get_visible_room_scenes();
@@ -79,43 +96,71 @@ HC2ScenePlatform.prototype.addHC2Scenes = function() {
     }
     
     for (var i = 0; i < roomScenes.length; i++) {
-        
+
         var t_scene = roomScenes[i];
         var accessoryName = t_scene.roomName + t_scene.sceneName;
-        var uuid_sed = accessoryName + t_scene.sceneID;
-        var uuid = UUIDGen.generate(uuid_sed);
-        this.log('add scene id ' + t_scene.sceneID 
-                 + ' ' + t_scene.sceneName 
-                 + ' with room ' + t_scene.roomName
-                 + ' with uuid ' + uuid);
+
         if (t_scene.roomName.charAt(0) != "_")
-            this.addSceneAccessory(uuid, t_scene.sceneID, t_scene.roomName+t_scene.sceneName);
+            this.addSceneAccessory(t_scene.sceneID, t_scene.roomName+t_scene.sceneName);
         else
-            this.addSceneAccessory(uuid, t_scene.sceneID, t_scene.sceneName);
+            this.addSceneAccessory(t_scene.sceneID, t_scene.sceneName);
     }
-    
+
 }
 
-HC2ScenePlatform.prototype.addSceneAccessory = function(uuid, sceneID, accessoryName) {
+HC2ScenePlatform.prototype.hc2SceneEventWithAccessory = function(accessory) {
+    var targetChar = accessory
+    .getService(Service.StatelessProgrammableSwitch)
+    .getCharacteristic(Characteristic.ProgrammableSwitchEvent);
+
+    targetChar.setValue(1);
+    setTimeout(function(){targetChar.setValue(0);}, 10000);
+
+}
+
+HC2ScenePlatform.prototype.addSceneAccessory = function(sceneID, accessoryName) {
     var self = this;
     var accessory;
-    
-    if (self.accessoryExistByUUID(uuid) == false) {
+    var uuid_sed = accessoryName + t_scene.sceneID;
+    var uuid = UUIDGen.generate(uuid_sed);
 
-        self.log('Create New Platform Accessory ' + accessoryName);
-        accessory = new Accessory(accessoryName, uuid);
-        accessory.context['displayName'] = accessoryName;
-        self.api.registerPlatformAccessories(self.pluginName, self.platformName, [accessory]);
-        
-    } else {
-        
-        self.log('Update Platform Accessory ' + accessoryName);
-        self.api.updatePlatformAccessories(self.accessories[uuid]);
+    var newAccessory = new Accessory(name, uuid, 15);
+
+    newAccessory.reachable = true;
+    newAccessory.context.mac = mac;
+    newAccessory.addService(Service.StatelessProgrammableSwitch, name);
+    newAccessory
+    .getService(Service.AccessoryInformation)
+    .setCharacteristic(Characteristic.Manufacturer, "Fibaro")
+    .setCharacteristic(Characteristic.Model, "HC2 Scene")
+    .setCharacteristic(Characteristic.SerialNumber, uuid);
+
+    this.accessories[mac] = newAccessory;
+    this.api.registerPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, [newAccessory]);
+
+}
+
+HC2ScenePlatform.prototype.removeAccessory(accessory) {
+    var self = this;
+    self.log('Remove Accessory ' + accessories.displayName);
+    
+    if (accessory) {
+        var uuid = accessory.UUID;
+        this.api.unregisterPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, [accessory]);
+        delete this.accessories[uuid];
     }
-        
+}
+
+HC2ScenePlatform.prototype.removeAccessories = function() {
+    var self = this;
+    self.log('Remove Platform ' + self.platformName + ' Accessory');
     
-    self.configureAccessory(accessory);
-    
+    var t_list = [];
+    for (var key in self.accessories) {
+        t_list.push(self.accessories[key])
+    }
+    this.api.unregisterPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, t_list);
+    this.accessories = {};
 }
 
 HC2ScenePlatform.prototype.accessoryExistByUUID = function(uuid) {
@@ -128,51 +173,9 @@ HC2ScenePlatform.prototype.accessoryExistByUUID = function(uuid) {
     return false;
 }
 
-HC2ScenePlatform.prototype.configureAccessory = function(accessory) {
-    var self = this;
-    self.log(accessory.displayName, "Configure Accessory");
-
-/*
-    accessory.on('identify', 
-        function(paired, callback) {
-            self.log(accessory.displayName, "Identify!!!");
-            callback();
-        });
-
-    // Plugin can save context on accessory
-    // To help restore accessory in configureAccessory()
-    // newAccessory.context.something = "Something"
-
-    // Make sure you provided a name for service otherwise it may not visible in some HomeKit apps.
-    accessory.addService(Service.Lightbulb, accessory.context['displayName'])
-                .getCharacteristic(Characteristic.On)
-                .on('set', function(value, callback) {
-                    self.log('accessory ' + accessoryName +  ' get service characteristic value ' + value);
-                    callback();
-                });
-
-*/
-    self.log(JSON.stringify(self.accessories));
-    
-    self.accessories[accessory.UUID] = accessory;
-}
-
 HC2ScenePlatform.prototype.configurationRequestHandler = function(context, request, callback) {
     this.log(accessory.displayName, "Configure Request Handler");
     
-}
-
-HC2ScenePlatform.prototype.removeAccessories = function() {
-    var self = this;
-    self.log('Remove Platform ' + self.platformName + ' Accessory');
-    
-    var t_list = [];
-    for (var key in self.accessories) {
-        t_list.push(self.accessories[key])
-    }
-    this.log('[DEBUG]', 'accessories to remove ' + t_list);
-    this.api.unregisterPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, t_list);
-    this.accessories = {};
 }
 
 HC2ScenePlatform.prototype.getPlatformAccessory = function(uuid) {
