@@ -140,12 +140,15 @@ HC2ScenePlatform.prototype.triggerSceneAccessory = function(accessory) {
     });
     request.end();
     
-    /*
     setTimeout(function(){
-        targetChar.setValue(0);
-    }, 10000);
-    */
+        self.resetSceneAccessory(accessory);
+    }, 1500);
 
+}
+
+HC2ScenePlatform.prototype.resetSceneAccessory = function(accessory) {
+    var self = this;
+    self.log('reset hc2 scene accessory id ' + accessory.context.sceneID);
 }
 
 HC2ScenePlatform.prototype.addSceneAccessory = function(sceneID, accessoryName) {
