@@ -92,13 +92,13 @@ HC2ScenePlatform.prototype.configureAccessory = function(accessory) {
 
     self.accessories[accessory.UUID] = accessory;
     
-    self.log('current accessory count ' + self.accessories.length);
+    self.log('current accessory count ' + Object.keys(self.accessories).length);
 
 }
 
 HC2ScenePlatform.prototype.didFinishLaunching = function() {
     var self = this;
-    this.log('didFinishLaunching');
+    self.log('didFinishLaunching');
     
     var hc2 = new HC2();
     var roomScenes = hc2.get_visible_room_scenes();
@@ -107,7 +107,7 @@ HC2ScenePlatform.prototype.didFinishLaunching = function() {
     //roomScenes = [roomScenes[0],roomScenes[1]];
     
     if (roomScenes.length == 0) {
-        this.log('No HC2 Room Scenes Exist!');
+        self.log('No HC2 Room Scenes Exist!');
         return
     }
     
@@ -124,11 +124,13 @@ HC2ScenePlatform.prototype.didFinishLaunching = function() {
             accessoryName = t_scene.sceneName.replace(/\s/g,'');
         }
 
+        accessoryName = t_scene.sceneName.replace(/\s/g,'');
         if (accessoryName.indexOf('(') > 0 ) {
-            accessoryName = accessoryName.substring(0,accessoryName.indexOf('(')-1);
+            accessoryName = accessoryName.substring(0,accessoryName.indexOf('('));
         }
 
-        this.addSceneAccessory(t_scene.sceneID, accessoryName);
+        self.log('room ' + t_scene.roomName + ', scene ' + t_scene.sceneName + ', accessory ' + accessoryName);
+        self.addSceneAccessory(t_scene.sceneID, accessoryName);
     }
 
 }
@@ -180,13 +182,13 @@ HC2ScenePlatform.prototype.addSceneAccessory = function(sceneID, accessoryName) 
         var newAccessory = new Accessory(accessoryName, uuid, 8);
 
         newAccessory.reachable = true;
-        newAccessory.context.sceneID = sceneID;
+        newAccessory.context = {sceneID: sceneID};
         newAccessory.addService(Service.Switch, accessoryName)
         .getCharacteristic(Characteristic.On)
         .on('set', function(value, callback) {
             self.log(accessoryName, "Switch On " + value);
             if (value) {
-                this.triggerSceneAccessory(accessory);
+                self.triggerSceneAccessory(newAccessory);
             }
             callback();
         });
@@ -203,7 +205,7 @@ HC2ScenePlatform.prototype.addSceneAccessory = function(sceneID, accessoryName) 
         self.log('scene accessory ' + accessoryName + ' exist, skip.');
     }
     
-    self.log('current accessory count ' + self.accessories.length);
+    self.log('current accessory count ' + Object.keys(self.accessories).length);
 }
 
 HC2ScenePlatform.prototype.removeAccessory = function(accessory) {
