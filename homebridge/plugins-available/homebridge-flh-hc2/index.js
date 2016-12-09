@@ -58,14 +58,14 @@ function HC2ScenePlatform(log, config, api) {
     }.bind(this));
 
     this.requestServer.listen(WEB_API_PORT, function() {
-        log("Platform " + this.platformName + " Server Listening...");
+        log("Platform " + PLATFORM_NAME + " Server Listening...");
     });
     
     if (api) {
 
         this.api = api;
 
-        this.api.on('didFinishLaunching', self.didFinishLaunching.bind(this));
+        this.api.on('didFinishLaunching', this.didFinishLaunching.bind(this));
     }    
 }
 
@@ -78,7 +78,7 @@ HC2ScenePlatform.prototype.configureAccessory = function(accessory) {
     .getService(Service.Switch)
     .getCharacteristic(Characteristic.On)
     .setValue(0);
-    
+
     self.accessories[accessory.UUID] = accessory;
 
 }
@@ -124,24 +124,24 @@ HC2ScenePlatform.prototype.hc2SceneEventWithAccessory = function(accessory) {
 HC2ScenePlatform.prototype.addSceneAccessory = function(sceneID, accessoryName) {
     var self = this;
     var accessory;
-    var uuid_sed = accessoryName + t_scene.sceneID;
+    var uuid_sed = accessoryName + sceneID;
     var uuid = UUIDGen.generate(uuid_sed);
 
-    var newAccessory = new Accessory(name, uuid, 15);
+    var newAccessory = new Accessory(accessoryName, uuid, 8);
 
     newAccessory.reachable = true;
-    newAccessory.context.mac = mac;
-    newAccessory.addService(Service.Switch, name);
-    newAccessory
-    .getService(Service.AccessoryInformation)
-    .setCharacteristic(Characteristic.Manufacturer, "Fibaro")
-    .setCharacteristic(Characteristic.Model, "HC2 Scene")
-    .setCharacteristic(Characteristic.SerialNumber, uuid)
+    newAccessory.addService(Service.Switch, accessoryName)
     .getCharacteristic(Characteristic.On)
     .on('set', function(value, callback) {
         self.log(accessory.displayName, "Switch On " + value);
         callback();
     });
+
+    newAccessory
+    .getService(Service.AccessoryInformation)
+    .setCharacteristic(Characteristic.Manufacturer, "Fibaro")
+    .setCharacteristic(Characteristic.Model, "HC2 Scene")
+    .setCharacteristic(Characteristic.SerialNumber, uuid);
     
     this.accessories[uuid] = newAccessory;
     this.api.registerPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, [newAccessory]);

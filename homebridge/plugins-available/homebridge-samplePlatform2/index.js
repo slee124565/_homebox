@@ -92,9 +92,6 @@ SamplePlatform.prototype.configureAccessory = function(accessory) {
     }
 
     obj = accessory;
-    for (var key in obj) {
-        this.log('accessory key ' + key);
-    }
     
   var platform = this;
 
