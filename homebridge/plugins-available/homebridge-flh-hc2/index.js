@@ -166,11 +166,12 @@ HC2ScenePlatform.prototype.removeAccessories = function() {
     var self = this;
     self.log('Remove Platform ' + self.platformName + ' Accessory');
     
-    var accessories = self.accessories.map(
-        function(value, index){
-            return [value];
-        });
-    this.api.unregisterPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, accessories);
+    var t_list = [];
+    for (var key in self.accessories) {
+        t_list.push(self.accessories[key])
+    }
+    this.log('[DEBUG]', 'accessories to remove ' + t_list);
+    this.api.unregisterPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, t_list);
     this.accessories = {};
 }
 
