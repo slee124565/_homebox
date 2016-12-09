@@ -2,9 +2,15 @@
 
 module.exports = HC2;
 
-function HC2() {
+function HC2(log, config) {
+    this.log = log;
+    this.config = config || {};
 
-    console.log('load module HC2');
+    this.log('hc2 module', 
+             this.config.hc2_account,
+             this.config.hc2_password,
+             this.config.hc2_hostname
+            );
 }
 
 HC2.prototype.get_scenes = function() {
@@ -53,3 +59,30 @@ HC2.prototype.get_visible_room_scenes = function() {
 
     return room_scenes;
 }
+
+HC2.prototype.read_hc2_room_scenes = function(callback) {
+    var self = this;
+    self.log('read hc2 roomed scenes ...');
+    self.read_hc2_scenes(callback)
+}
+
+HC2.prototype.read_hc2_scenes = function(callback) {
+    var self = this;
+    self.log('read hc2 scenes ...');
+    
+    
+    self.read_hc2_rooms(callback);
+}
+
+HC2.prototype.read_hc2_rooms = function(callback) {
+    var self = this;
+    var room_scenes = [];
+    
+    self.log('read hc2 rooms ...');
+    
+    self.log('get scenes with room assigned');
+    
+    self.log('return room_scenes result');
+    callback(room_scenes);
+}
+
