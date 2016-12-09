@@ -114,15 +114,21 @@ HC2ScenePlatform.prototype.didFinishLaunching = function() {
     for (var i = 0; i < roomScenes.length; i++) {
 
         var t_scene = roomScenes[i];
-        var accessoryName = t_scene.roomName + t_scene.sceneName.replace(/\s/g,'');
+        var accessoryName;
+        
+        if (t_scene.roomName.charAt(0) != "_") {
+
+            accessoryName = t_scene.roomName + t_scene.sceneName.replace(/\s/g,'');
+        } else {
+
+            accessoryName = t_scene.sceneName.replace(/\s/g,'');
+        }
+
         if (accessoryName.indexOf('(') > 0 ) {
             accessoryName = accessoryName.substring(0,accessoryName.indexOf('(')-1);
         }
 
-        if (t_scene.roomName.charAt(0) != "_")
-            this.addSceneAccessory(t_scene.sceneID, t_scene.roomName+t_scene.sceneName);
-        else
-            this.addSceneAccessory(t_scene.sceneID, t_scene.sceneName);
+        this.addSceneAccessory(t_scene.sceneID, accessoryName);
     }
 
 }
