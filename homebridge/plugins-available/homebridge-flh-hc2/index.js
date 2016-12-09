@@ -75,8 +75,8 @@ HC2ScenePlatform.prototype.configureAccessory = function(accessory) {
     
     accessory.reachable = true;
     accessory
-    .getService(Service.StatelessProgrammableSwitch)
-    .getCharacteristic(Characteristic.ProgrammableSwitchEvent)
+    .getService(Service.Switch)
+    .getCharacteristic(Characteristic.On)
     .setValue(0);
     
     self.accessories[accessory.UUID] = accessory;
@@ -128,14 +128,19 @@ HC2ScenePlatform.prototype.addSceneAccessory = function(sceneID, accessoryName) 
 
     newAccessory.reachable = true;
     newAccessory.context.mac = mac;
-    newAccessory.addService(Service.StatelessProgrammableSwitch, name);
+    newAccessory.addService(Service.Switch, name);
     newAccessory
     .getService(Service.AccessoryInformation)
     .setCharacteristic(Characteristic.Manufacturer, "Fibaro")
     .setCharacteristic(Characteristic.Model, "HC2 Scene")
-    .setCharacteristic(Characteristic.SerialNumber, uuid);
-
-    this.accessories[mac] = newAccessory;
+    .setCharacteristic(Characteristic.SerialNumber, uuid)
+    .getCharacteristic(Characteristic.On)
+    .on('set', function(value, callback) {
+        self.log(accessory.displayName, "Switch On " + value);
+        callback();
+    });
+    
+    this.accessories[uuid] = newAccessory;
     this.api.registerPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, [newAccessory]);
 
 }
