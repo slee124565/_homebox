@@ -127,24 +127,32 @@ HC2ScenePlatform.prototype.addSceneAccessory = function(sceneID, accessoryName) 
     var uuid_sed = accessoryName + sceneID;
     var uuid = UUIDGen.generate(uuid_sed);
 
-    var newAccessory = new Accessory(accessoryName, uuid, 8);
+    var UUIDs = Object.keys(self.accessories)
+    if (UUIDs.indexOf(uuid) == -1) {
+        
+        self.log('add scene accessory ' + accessoryName);
+        var newAccessory = new Accessory(accessoryName, uuid, 8);
 
-    newAccessory.reachable = true;
-    newAccessory.addService(Service.Switch, accessoryName)
-    .getCharacteristic(Characteristic.On)
-    .on('set', function(value, callback) {
-        self.log(accessory.displayName, "Switch On " + value);
-        callback();
-    });
+        newAccessory.reachable = true;
+        newAccessory.addService(Service.Switch, accessoryName)
+        .getCharacteristic(Characteristic.On)
+        .on('set', function(value, callback) {
+            self.log(accessory.displayName, "Switch On " + value);
+            callback();
+        });
 
-    newAccessory
-    .getService(Service.AccessoryInformation)
-    .setCharacteristic(Characteristic.Manufacturer, "Fibaro")
-    .setCharacteristic(Characteristic.Model, "HC2 Scene")
-    .setCharacteristic(Characteristic.SerialNumber, uuid);
-    
-    this.accessories[uuid] = newAccessory;
-    this.api.registerPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, [newAccessory]);
+        newAccessory
+        .getService(Service.AccessoryInformation)
+        .setCharacteristic(Characteristic.Manufacturer, "Fibaro")
+        .setCharacteristic(Characteristic.Model, "HC2 Scene")
+        .setCharacteristic(Characteristic.SerialNumber, uuid);
+
+        this.accessories[uuid] = newAccessory;
+        this.api.registerPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, [newAccessory]);
+    } else {
+        self.log('scene accessory ' + accessoryName + ' exist, skip.');
+    }
+     
 
 }
 
