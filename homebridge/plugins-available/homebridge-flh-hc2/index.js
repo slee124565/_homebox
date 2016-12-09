@@ -84,7 +84,7 @@ HC2ScenePlatform.prototype.configureAccessory = function(accessory) {
     .on('set', function(value, callback) {
         self.log(accessory.displayName, "Switch On " + value);
         if (value) {
-            this.triggerSceneAccessory(accessory);
+            self.triggerSceneAccessory(accessory);
         }
         callback();
     })
@@ -104,7 +104,7 @@ HC2ScenePlatform.prototype.didFinishLaunching = function() {
     var roomScenes = hc2.get_visible_room_scenes();
     
     //-> develop with 2 hc2 scene
-    roomScenes = [roomScenes[0],roomScenes[1]];
+    //roomScenes = [roomScenes[0],roomScenes[1]];
     
     if (roomScenes.length == 0) {
         this.log('No HC2 Room Scenes Exist!');
@@ -114,7 +114,10 @@ HC2ScenePlatform.prototype.didFinishLaunching = function() {
     for (var i = 0; i < roomScenes.length; i++) {
 
         var t_scene = roomScenes[i];
-        var accessoryName = t_scene.roomName + t_scene.sceneName;
+        var accessoryName = t_scene.roomName + t_scene.sceneName.replace(/\s/g,'');
+        if (accessoryName.indexOf('(') > 0 ) {
+            accessoryName = accessoryName.substring(0,accessoryName.indexOf('(')-1);
+        }
 
         if (t_scene.roomName.charAt(0) != "_")
             this.addSceneAccessory(t_scene.sceneID, t_scene.roomName+t_scene.sceneName);
@@ -126,9 +129,9 @@ HC2ScenePlatform.prototype.didFinishLaunching = function() {
 
 HC2ScenePlatform.prototype.triggerSceneAccessory = function(accessory) {
     var self = this;
-    var scensID = accessory.context.sceneID;
+    var sceneID = accessory.context.sceneID;
 
-    this.log('trigger HC2 scene ' + accessory.displayName + ', id: ' + sceneID);
+    self.log('trigger HC2 scene ' + accessory.displayName + ', id: ' + sceneID);
 
     var header = { 'host': HC2_IP_ADDR,
                   'path': '/api/sceneControl?id=' + sceneID + '&action=start',
@@ -138,7 +141,7 @@ HC2ScenePlatform.prototype.triggerSceneAccessory = function(accessory) {
     var request = http.request(
         header, 
         function(response) {
-            this.log('response code: ' + response.statusCode);
+            self.log('response code: ' + response.statusCode);
     });
     request.end();
     
@@ -151,6 +154,11 @@ HC2ScenePlatform.prototype.triggerSceneAccessory = function(accessory) {
 HC2ScenePlatform.prototype.resetSceneAccessory = function(accessory) {
     var self = this;
     self.log('reset hc2 scene accessory id ' + accessory.context.sceneID);
+
+    accessory
+    .getService(Service.Switch)
+    .getCharacteristic(Characteristic.On)
+    .setValue(false);
 }
 
 HC2ScenePlatform.prototype.addSceneAccessory = function(sceneID, accessoryName) {
@@ -170,7 +178,7 @@ HC2ScenePlatform.prototype.addSceneAccessory = function(sceneID, accessoryName) 
         newAccessory.addService(Service.Switch, accessoryName)
         .getCharacteristic(Characteristic.On)
         .on('set', function(value, callback) {
-            self.log(accessory.displayName, "Switch On " + value);
+            self.log(accessoryName, "Switch On " + value);
             if (value) {
                 this.triggerSceneAccessory(accessory);
             }
