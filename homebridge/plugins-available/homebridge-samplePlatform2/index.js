@@ -60,7 +60,6 @@ function SamplePlatform(log, config, api) {
       // Or start discover new accessories
       this.api.on('didFinishLaunching', function() {
         platform.log("DidFinishLaunching");
-          }
       }.bind(this));
   }
 }
