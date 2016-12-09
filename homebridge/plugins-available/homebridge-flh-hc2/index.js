@@ -77,6 +77,10 @@ HC2ScenePlatform.prototype.configureAccessory = function(accessory) {
     accessory
     .getService(Service.Switch)
     .getCharacteristic(Characteristic.On)
+    .on('set', function(value, callback) {
+            self.log(accessory.displayName, "Switch On " + value);
+            callback();
+    })
     .setValue(0);
 
     self.accessories[accessory.UUID] = accessory;
