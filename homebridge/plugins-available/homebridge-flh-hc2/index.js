@@ -88,7 +88,7 @@ HC2ScenePlatform.prototype.configureAccessory = function(accessory) {
         }
         callback();
     })
-    .setValue(0);
+    .setValue(false);
 
     self.accessories[accessory.UUID] = accessory;
     
