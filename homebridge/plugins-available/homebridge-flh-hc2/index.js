@@ -83,7 +83,7 @@ HC2ScenePlatform.prototype.configureAccessory = function(accessory) {
 
 }
 
-DashPlatform.prototype.didFinishLaunching = function() {
+HC2ScenePlatform.prototype.didFinishLaunching = function() {
     var self = this;
     this.log('didFinishLaunching');
     
@@ -148,7 +148,7 @@ HC2ScenePlatform.prototype.addSceneAccessory = function(sceneID, accessoryName) 
 
 }
 
-HC2ScenePlatform.prototype.removeAccessory(accessory) {
+HC2ScenePlatform.prototype.removeAccessory = function(accessory) {
     var self = this;
     self.log('Remove Accessory ' + accessories.displayName);
     
