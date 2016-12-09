@@ -90,6 +90,9 @@ DashPlatform.prototype.didFinishLaunching = function() {
     var hc2 = new HC2();
     var roomScenes = hc2.get_visible_room_scenes();
     
+    //-> develop with 2 hc2 scene
+    roomScenes = [roomScenes[0],roomScenes[1]];
+    
     if (roomScenes.length == 0) {
         this.log('No HC2 Room Scenes Exist!');
         return
