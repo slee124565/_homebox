@@ -4,6 +4,10 @@ var PLUGIN_NAME = 'homebridge-flh-hc2';
 var PLATFORM_NAME = 'HC2ScenePlatform'
 var WEB_API_PORT = 18083;
 
+var HC2_USER = 'admin';
+var HC2_PASSWD = 'flhadmin';
+var HC2_IP_ADDR = '192.168.10.5';
+
 var http = require('http');
 var HC2 = require('./lib/hc2');
 
@@ -78,8 +82,11 @@ HC2ScenePlatform.prototype.configureAccessory = function(accessory) {
     .getService(Service.Switch)
     .getCharacteristic(Characteristic.On)
     .on('set', function(value, callback) {
-            self.log(accessory.displayName, "Switch On " + value);
-            callback();
+        self.log(accessory.displayName, "Switch On " + value);
+        if (value) {
+            this.triggerSceneAccessory(accessory);
+        }
+        callback();
     })
     .setValue(0);
 
@@ -115,13 +122,29 @@ HC2ScenePlatform.prototype.didFinishLaunching = function() {
 
 }
 
-HC2ScenePlatform.prototype.hc2SceneEventWithAccessory = function(accessory) {
-    var targetChar = accessory
-    .getService(Service.StatelessProgrammableSwitch)
-    .getCharacteristic(Characteristic.ProgrammableSwitchEvent);
+HC2ScenePlatform.prototype.triggerSceneAccessory = function(accessory) {
+    var self = this;
+    var scensID = accessory.context.sceneID;
 
-    targetChar.setValue(1);
-    setTimeout(function(){targetChar.setValue(0);}, 10000);
+    this.log('trigger HC2 scene ' + accessory.displayName + ', id: ' + sceneID);
+
+    var header = { 'host': HC2_IP_ADDR,
+                  'path': '/api/sceneControl?id=' + sceneID + '&action=start',
+                    'auth': HC2_USER + ':' + HC2_PASSWD
+                 };
+    
+    var request = http.request(
+        header, 
+        function(response) {
+            this.log('response code: ' + response.statusCode);
+    });
+    request.end();
+    
+    /*
+    setTimeout(function(){
+        targetChar.setValue(0);
+    }, 10000);
+    */
 
 }
 
@@ -138,10 +161,14 @@ HC2ScenePlatform.prototype.addSceneAccessory = function(sceneID, accessoryName) 
         var newAccessory = new Accessory(accessoryName, uuid, 8);
 
         newAccessory.reachable = true;
+        newAccessory.context.sceneID = sceneID;
         newAccessory.addService(Service.Switch, accessoryName)
         .getCharacteristic(Characteristic.On)
         .on('set', function(value, callback) {
             self.log(accessory.displayName, "Switch On " + value);
+            if (value) {
+                this.triggerSceneAccessory(accessory);
+            }
             callback();
         });
 
