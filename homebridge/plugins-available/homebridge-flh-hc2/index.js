@@ -100,8 +100,13 @@ HC2ScenePlatform.prototype.didFinishLaunching = function() {
     var self = this;
     self.log('didFinishLaunching');
     
-    var hc2 = new HC2();
-    var roomScenes = hc2.get_visible_room_scenes();
+    self.log('hc2 config: ' + self.config.hc2);
+    var hc2 = new HC2(self.log, self.config.hc2);
+    hc2.read_hc2_room_scenes(self.syncHC2RoomScenes);
+    
+}
+
+HC2ScenePlatform.prototype.syncHC2RoomScenes = function(roomScenes) {
     
     //-> develop with 2 hc2 scene
     //roomScenes = [roomScenes[0],roomScenes[1]];
@@ -132,6 +137,7 @@ HC2ScenePlatform.prototype.didFinishLaunching = function() {
         self.log('room ' + t_scene.roomName + ', scene ' + t_scene.sceneName + ', accessory ' + accessoryName);
         self.addSceneAccessory(t_scene.sceneID, accessoryName);
     }
+
 
 }
 
