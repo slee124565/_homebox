@@ -100,7 +100,7 @@ HC2ScenePlatform.prototype.didFinishLaunching = function() {
     var self = this;
     self.log('didFinishLaunching');
     
-    var hc2 = new HC2(self.log, self.config.hc2);
+    var hc2 = new HC2(self, self.config.hc2);
     hc2.read_hc2_room_scenes(self.syncHC2RoomScenes);
     
 }
