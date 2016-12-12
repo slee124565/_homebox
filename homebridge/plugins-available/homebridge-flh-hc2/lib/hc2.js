@@ -1,10 +1,14 @@
 'use strict';
 
+var http = require('http');
+
 module.exports = HC2;
 
 function HC2(log, config) {
     this.log = log;
     this.config = config || {};
+    this.hc2_rooms = {};
+    this.hc2_scenes = {};
 
     this.log('hc2 module', 
              this.config.hc2_account,
@@ -27,10 +31,11 @@ HC2.prototype.get_rooms = function() {
 }
 
 HC2.prototype.get_visible_room_scenes = function() {
+    var self = this
     var room_scenes = [];
     
-    var hc2_scenes = this.get_scenes();
-    var hc2_rooms = this.get_rooms();
+    var hc2_scenes = self.hc2_scenes; //this.get_scenes();
+    var hc2_rooms = self.hc2_rooms; // this.get_rooms();
     
     for (var i=0; i < hc2_scenes.length; i++) {
         
@@ -62,16 +67,39 @@ HC2.prototype.get_visible_room_scenes = function() {
 
 HC2.prototype.read_hc2_room_scenes = function(callback) {
     var self = this;
-    self.log('read hc2 roomed scenes ...');
-    self.read_hc2_scenes(callback)
-}
-
-HC2.prototype.read_hc2_scenes = function(callback) {
-    var self = this;
     self.log('read hc2 scenes ...');
     
+    var header = { 
+        'host': self.config.hc2_hostname,
+        'path': '/api/scenes',
+        'auth': self.config.hc2_account + ':' + self.config.hc2_password
+    };
     
-    self.read_hc2_rooms(callback);
+    var request = http.request(
+        header, 
+        function(response) {
+            var str = '';
+            response.on('data', function (chunk) {
+                str += chunk;
+            });
+
+            //the whole response has been recieved, so we just print it out here
+            response.on('end', function () {
+                self.hc2_scenes = JSON.parse(str);
+                self.log('read hc2 scenes count ' + self.hc2_scenes.length);
+                self.read_hc2_rooms(callback);
+            });
+            
+            response.on('error', function (err) {
+                self.log('read hc2 scenes error: ' + err.message);
+                callback(err,null);
+            });
+
+            self.log('read hc2 scenes response code: ' + response.statusCode);
+        }
+    );
+    request.end();
+    
 }
 
 HC2.prototype.read_hc2_rooms = function(callback) {
@@ -80,9 +108,35 @@ HC2.prototype.read_hc2_rooms = function(callback) {
     
     self.log('read hc2 rooms ...');
     
-    self.log('get scenes with room assigned');
+    var header = { 
+        'host': self.config.hc2_hostname,
+        'path': '/api/rooms',
+        'auth': self.config.hc2_account + ':' + self.config.hc2_password
+    };
     
-    self.log('return room_scenes result');
-    callback(room_scenes);
+    var request = http.request(
+        header, 
+        function(response) {
+            var str = '';
+            response.on('data', function (chunk) {
+                str += chunk;
+            });
+
+            //the whole response has been recieved, so we just print it out here
+            response.on('end', function () {
+                self.hc2_rooms = JSON.parse(str);
+                self.log('read hc2 rooms count ' + self.hc2_rooms.length);
+                callback(null, self.get_visible_room_scenes());
+            });
+            
+            response.on('error', function (err) {
+                self.log('read hc2 rooms error: ' + err.message);
+                callback(err,null);
+            });
+
+            self.log('read hc2 rooms response code: ' + response.statusCode);
+        }
+    );
+    request.end();
 }
 

@@ -150,7 +150,8 @@ HC2ScenePlatform.prototype.triggerSceneAccessory = function(accessory) {
         header, 
         function(response) {
             self.log('response code: ' + response.statusCode);
-    });
+        }
+    );
     request.end();
     
     setTimeout(function(){
