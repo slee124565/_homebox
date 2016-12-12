@@ -140,11 +140,26 @@ HC2ScenePlatform.prototype.syncHC2RoomScenes = function(err, response) {
             accessoryName = accessoryName.substring(0,accessoryName.indexOf('('));
         }
 
-        self.log('room ' + t_scene.roomName + ', scene ' + t_scene.sceneName + ', accessory ' + accessoryName);
-        self.addSceneAccessory(t_scene.sceneID, accessoryName);
+        //self.log('room ' + t_scene.roomName + ', scene ' + t_scene.sceneName + ', accessory ' + accessoryName);
+        var accessory = self.addSceneAccessory(t_scene.sceneID, accessoryName);
+        accessory.context['sync_exist'] = true;
     }
+    
+    self.removeNotSyncSceneAccessory();
+}
 
-
+HC2ScenePlatform.prototype.removeNotSyncSceneAccessory = function() {
+    var self = this;
+    self.log('remove not sync scene accessory');
+    
+    for (var uuid in self.accessories) {
+        var accessory = self.accessories[uuid];
+        if (accessory.context.sync_exist) {
+            self.log('keep accessory ' + accessory.displayName);
+        } else {
+            self.log('remove accessory ' + accessory.displayName);
+        }
+    }
 }
 
 HC2ScenePlatform.prototype.triggerSceneAccessory = function(accessory) {
@@ -219,6 +234,8 @@ HC2ScenePlatform.prototype.addSceneAccessory = function(sceneID, accessoryName) 
     }
     
     self.log('current accessory count ' + Object.keys(self.accessories).length);
+    
+    return this.accessories[uuid];
 }
 
 HC2ScenePlatform.prototype.removeAccessory = function(accessory) {
