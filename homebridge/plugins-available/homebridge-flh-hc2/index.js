@@ -106,7 +106,7 @@ HC2ScenePlatform.prototype.didFinishLaunching = function() {
 }
 
 HC2ScenePlatform.prototype.syncHC2RoomScenes = function(err, response) {
-    var self = resonse.parent;
+    var self = response.parent;
     var roomScenes = response.roomScenes;
 
     //-> develop with 2 hc2 scene
