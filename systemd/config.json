@@ -8,9 +8,14 @@
     
     "description": "This is an example configuration file with one fake accessory and one fake platform. You can use this as a template for creating your own configuration file containing devices you actually own.",
 
-    "hc2": {
-        "hc2_account": "admin",
-        "hc2_password": "flhadmin",
-        "hc2_hostname": "192.168.10.5"
-    }
+    "platforms": [
+        {
+            "platform": "HC2ScenePlatform",
+            "hc2": {
+                "hc2_account": "admin",
+                "hc2_password": "flhadmin",
+                "hc2_hostname": "192.168.10.5"
+            }
+        }
+    ]
 }
