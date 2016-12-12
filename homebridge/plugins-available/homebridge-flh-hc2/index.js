@@ -75,7 +75,7 @@ function HC2ScenePlatform(log, config, api) {
 
 HC2ScenePlatform.prototype.configureAccessory = function(accessory) {
     var self = this;
-    self.log(accessory.displayName, "Configure Accessory");
+    self.log("configure accessory", accessory.displayName );
     
     accessory.reachable = true;
     accessory
@@ -92,14 +92,16 @@ HC2ScenePlatform.prototype.configureAccessory = function(accessory) {
 
     self.accessories[accessory.UUID] = accessory;
     
-    self.log('current accessory count ' + Object.keys(self.accessories).length);
+    //self.log('current accessory count ' + Object.keys(self.accessories).length);
 
 }
 
 HC2ScenePlatform.prototype.didFinishLaunching = function() {
     var self = this;
     self.log('didFinishLaunching');
+    self.log('current configured accessories count ' + Object.keys(self.accessories).length);
     
+    self.log('start to read hc2 room scenes ...');
     var hc2 = new HC2(self, self.config.hc2);
     hc2.read_hc2_room_scenes(self.syncHC2RoomScenes);
     
@@ -122,6 +124,7 @@ HC2ScenePlatform.prototype.syncHC2RoomScenes = function(err, response) {
         return
     }
     
+    self.log('start to add new room scene ...');
     for (var i = 0; i < roomScenes.length; i++) {
 
         var t_scene = roomScenes[i];
@@ -150,14 +153,17 @@ HC2ScenePlatform.prototype.syncHC2RoomScenes = function(err, response) {
 
 HC2ScenePlatform.prototype.removeNotSyncSceneAccessory = function() {
     var self = this;
-    self.log('remove not sync scene accessory');
+    self.log('start to remove scene accessory not in hc2 ...');
     
     for (var uuid in self.accessories) {
+        
         var accessory = self.accessories[uuid];
+        self.log(accessory.context.sceneID,accessory.displayName,accessory.context.sync_exist);
         if (accessory.context.sync_exist) {
-            self.log('keep accessory ' + accessory.displayName);
+            //self.log('keep accessory ' + accessory.displayName);
         } else {
             self.log('remove accessory ' + accessory.displayName);
+            self.removeAccessory(accessory);
         }
     }
 }
@@ -206,7 +212,6 @@ HC2ScenePlatform.prototype.addSceneAccessory = function(sceneID, accessoryName) 
     var UUIDs = Object.keys(self.accessories)
     if (UUIDs.indexOf(uuid) == -1) {
         
-        self.log('add scene accessory ' + accessoryName);
         var newAccessory = new Accessory(accessoryName, uuid, 8);
 
         newAccessory.reachable = true;
@@ -229,11 +234,10 @@ HC2ScenePlatform.prototype.addSceneAccessory = function(sceneID, accessoryName) 
 
         this.accessories[uuid] = newAccessory;
         this.api.registerPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, [newAccessory]);
+        self.log('new scene accessory ' + accessoryName + ' added.');
     } else {
-        self.log('scene accessory ' + accessoryName + ' exist, skip.');
+        //self.log('scene accessory ' + accessoryName + ' exist, skip.');
     }
-    
-    self.log('current accessory count ' + Object.keys(self.accessories).length);
     
     return this.accessories[uuid];
 }
