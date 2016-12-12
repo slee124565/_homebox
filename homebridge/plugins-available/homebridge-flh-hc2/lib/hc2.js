@@ -4,8 +4,9 @@ var http = require('http');
 
 module.exports = HC2;
 
-function HC2(log, config) {
-    this.log = log;
+function HC2(parent, config) {
+    this.parent = parent;
+    this.log = parent.log;
     this.config = config || {};
     this.hc2_rooms = {};
     this.hc2_scenes = {};
@@ -126,7 +127,9 @@ HC2.prototype.read_hc2_rooms = function(callback) {
             response.on('end', function () {
                 self.hc2_rooms = JSON.parse(str);
                 self.log('read hc2 rooms count ' + self.hc2_rooms.length);
-                callback(null, self.get_visible_room_scenes());
+                callback(null, { 
+                    parent: self.parent,
+                    roomScenes : self.get_visible_room_scenes()});
             });
             
             response.on('error', function (err) {

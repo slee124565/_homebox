@@ -105,11 +105,17 @@ HC2ScenePlatform.prototype.didFinishLaunching = function() {
     
 }
 
-HC2ScenePlatform.prototype.syncHC2RoomScenes = function(err, roomScenes) {
-    var self = this;
+HC2ScenePlatform.prototype.syncHC2RoomScenes = function(err, response) {
+    var self = resonse.parent;
+    var roomScenes = response.roomScenes;
 
     //-> develop with 2 hc2 scene
     //roomScenes = [roomScenes[0],roomScenes[1]];
+    
+    if (err != null) {
+        self.log('read hc2 room scene err: ' + err.message);
+        return;
+    }
     
     if (roomScenes.length == 0) {
         self.log('No HC2 Room Scenes Exist!');
