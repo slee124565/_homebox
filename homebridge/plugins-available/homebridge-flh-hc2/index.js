@@ -100,14 +100,14 @@ HC2ScenePlatform.prototype.didFinishLaunching = function() {
     var self = this;
     self.log('didFinishLaunching');
     
-    self.log('hc2 config: ' + JSON.stringify(self.config));
     var hc2 = new HC2(self.log, self.config.hc2);
     hc2.read_hc2_room_scenes(self.syncHC2RoomScenes);
     
 }
 
-HC2ScenePlatform.prototype.syncHC2RoomScenes = function(roomScenes) {
-    
+HC2ScenePlatform.prototype.syncHC2RoomScenes = function(err, roomScenes) {
+    var self = this;
+
     //-> develop with 2 hc2 scene
     //roomScenes = [roomScenes[0],roomScenes[1]];
     
