@@ -63,6 +63,7 @@ HC2.prototype.get_visible_room_scenes = function() {
         }
     }
 
+    self.log('get hc2 visible room scene count ' + room_scenes.length);
     return room_scenes;
 }
 
