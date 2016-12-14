@@ -1,0 +1,21 @@
+{
+    "bridge": {
+        "name": "費米盒子",
+        "username": "",
+        "port": 51826,
+        "pin": "031-45-154"
+    },
+    
+    "description": "This is an example configuration file with one fake accessory and one fake platform. You can use this as a template for creating your own configuration file containing devices you actually own.",
+
+    "platforms": [
+        {
+            "platform": "HC2ScenePlatform",
+            "hc2": {
+                "hc2_account": "",
+                "hc2_password": "",
+                "hc2_hostname": ""
+            }
+        }
+    ]
+}
