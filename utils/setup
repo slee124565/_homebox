@@ -15,6 +15,7 @@ ${0##*/} -h <HC2_IP_ADDRESS> -u <HC2_USERNAME> -p <HC2_PASSWORD>
 
     -p <HC2_PASSWORD> HC2 Web API Password
 
+EOM
 }
 
 get_mac_addr() {
@@ -26,7 +27,7 @@ get_mac_addr() {
 set_hb_username() {
     mac_addr=$(get_mac_addr)
     if [ -f "$HOMEBRIDGE_CONFIG_FILE" ]; then
-        sudo -u homebridge sed -i '/"username": / c\       "username": '"\"${mac_addr}\"" ${HOMEBRIDGE_CONFIG_FILE}
+        sudo -u homebridge sed -i '/"username": / c\       "username": '"\"${mac_addr}\"," ${HOMEBRIDGE_CONFIG_FILE}
     else
         echo "ERR: homebridge config.json not exist!"
         echo "ERR: fail to set homebridge username config!"
@@ -35,8 +36,8 @@ set_hb_username() {
 
 set_hb_platform() {
 
-    sudo -u homebridge sed -i '/"hc2_account": / c\                "hc2_account": '"\"${hc2_username}\"" ${HOMEBRIDGE_CONFIG_FILE}
-    sudo -u homebridge sed -i '/"hc2_password": / c\                "hc2_password": '"\"${hc2_password}\"" ${HOMEBRIDGE_CONFIG_FILE}
+    sudo -u homebridge sed -i '/"hc2_account": / c\                "hc2_account": '"\"${hc2_username}\"," ${HOMEBRIDGE_CONFIG_FILE}
+    sudo -u homebridge sed -i '/"hc2_password": / c\                "hc2_password": '"\"${hc2_password}\"," ${HOMEBRIDGE_CONFIG_FILE}
     sudo -u homebridge sed -i '/"hc2_hostname": / c\                "hc2_hostname": '"\"${hc2_ip}\"" ${HOMEBRIDGE_CONFIG_FILE}
 }
 
