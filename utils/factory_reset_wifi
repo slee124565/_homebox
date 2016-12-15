@@ -1,17 +1,9 @@
 #!/bin/bash -x
 
-
 FILE_PATH=$(echo $(cd $(dirname "$0") && pwd -P)/$(basename "$0"))
 BASEDIR=$(dirname "$(dirname "$(dirname "${FILE_PATH}")")"
 
-
 #-> rollback /etc/wpa_supplicant/wpa_supplicant.conf
 sudo cp $BASEIDR/factory/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
-
-#-> rollback /var/homebridge/config.json
-sudo -u homebridge cp $BASEIDR/factory/config.json /var/homebridge/config.json
-
-#-> remove homebridge temp files
-sudo rm -rf /var/homebridge/persist /var/homebridge/accessories
 
 
