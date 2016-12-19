@@ -10,5 +10,16 @@
  */
 angular
   .module('homeboxApp', [
-    'ngResource'
-  ]);
+    'ngResource',
+    'ui.router'
+  ]).config(function($stateProvider, $urlRouterProvider){
+    $stateProvider
+    .state({
+        name: 'settings',
+        url: '/settings',
+        templateUrl: 'views/settings.html',
+        controller: 'SettingsCtrl'
+    });
+    
+    $urlRouterProvider.otherwise('/settings');
+});
