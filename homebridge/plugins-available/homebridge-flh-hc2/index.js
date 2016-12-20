@@ -199,7 +199,7 @@ HC2ScenePlatform.prototype.resetSceneAccessory = function(accessory) {
     accessory
     .getService(Service.Switch)
     .getCharacteristic(Characteristic.On)
-    .setValue(false);
+    .setValue(0);
 }
 
 HC2ScenePlatform.prototype.addSceneAccessory = function(sceneID, accessoryName) {
