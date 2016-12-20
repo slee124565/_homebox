@@ -11,14 +11,14 @@ angular.module('homeboxApp')
   .service('SettingsService', ['$http', 
     function ($http) {
         this.getSiteConfig = function() {
-            return $http.get('/webapp/api/config/get');
+            return $http.get('/webapp/api/config');
         };
         this.setSiteConfig = function(newConfig) {
-            var data = $.param({
-                u: newConfig.hc2Account,
-                p: newConfig.hc2Password,
-                h: newConfig.hc2IPAddress
+            return $http({
+                method: 'POST',
+                url: '/webapp/api/config',
+                data: newConfig,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             });
-            return $http.post('/webapp/api/config/post',data);
         };
   }]);

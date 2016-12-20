@@ -49,37 +49,36 @@
 
                     <div class="well">
 
-						<form>
+						<form name="siteConfig" ng-submit="setSiteConfig()">
 							<div class="form-group">
 								<label for="hc2IPAddress">HC2 IP Address</label>
 								<input type="text" class="form-control" ng-model="siteConfig.hc2IPAddress"
-                                       id="hc2IPAddress" placeholder="192.168.1.100">
+                                       id="hc2IPAddress" placeholder="HC2 IP Address">
 							</div>
 						
 							<div class="form-group">
 								<label for="hc2Account">HC2 Account</label>
 								<input type="text" class="form-control" ng-model="siteConfig.hc2Account"
-                                       id="hc2Account" placeholder="account">
+                                       id="hc2Account" placeholder="HC2 Login Account">
 							</div>
 						
 							<div class="form-group">
 								<label for="hc2Password">HC2 Account Password</label>
 								<input type="password" class="form-control" ng-model="siteConfig.hc2Password" 
-                                       id="hc2Password" placeholder="Password">
+                                       id="hc2Password" placeholder="HC2 Login Password">
 							</div>
 						
 							<div class="form-group">
 								<label for="wifiSSID">WiFi SSID:</label>
-								<select class="form-control" id="wifiSSID"
-                                        ng-options="option.name for option in siteConfig.ssidOptions track by option.id"
-                                        ng-model="siteConfig.selectedSSID">
-								</select>
+								<select class="form-control" 
+                                        ng-options="option.name for option in ssidOptions track by option.name" 
+                                        ng-model="wifiSSID"></select>
 							</div>
 						
 							<div class="form-group">
 								<label for="wifiPassword">WiFi AP Password</label>
 								<input type="password" class="form-control" ng-model="siteConfig.wifiPassword" 
-                                       id="wifiPassword" placeholder="Password">
+                                       id="wifiPassword" placeholder="WiFi Password">
 							</div>
 							
 							<div class="form-group">
