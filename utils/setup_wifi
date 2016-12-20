@@ -39,7 +39,7 @@ parse_args() {
 parse_args $@
 sudo cp $BASEDIR/factory/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
 sudo sed -i '/ssid=/ c\    ssid='"\"${ssid}\"" /etc/wpa_supplicant/wpa_supplicant.conf
-sudo sed -i '/pks=/ c\    pks='"\"${password}\"" /etc/wpa_supplicant/wpa_supplicant.conf
+sudo sed -i '/psk=/ c\    psk='"\"${password}\"" /etc/wpa_supplicant/wpa_supplicant.conf
 sudo ifdown wlan0
 sudo sleep 3
 sudo ifup wlan0
