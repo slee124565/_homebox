@@ -4,10 +4,6 @@ var PLUGIN_NAME = 'homebridge-flh-hc2';
 var PLATFORM_NAME = 'HC2ScenePlatform'
 var WEB_API_PORT = 18083;
 
-var HC2_USER = 'admin';
-var HC2_PASSWD = 'flhadmin';
-var HC2_IP_ADDR = '192.168.10.5';
-
 var http = require('http');
 var HC2 = require('./lib/hc2');
 
@@ -102,7 +98,7 @@ HC2ScenePlatform.prototype.didFinishLaunching = function() {
     self.log('didFinishLaunching');
     self.log('current configured accessories count ' + Object.keys(self.accessories).length);
     
-    self.log('start to read hc2 room scenes ...');
+    self.log('start to read hc2(' + self.config.hc2.hc2_hostname + ') room scenes ...');
     var hc2 = new HC2(self, self.config.hc2);
     hc2.read_hc2_room_scenes(self.syncHC2RoomScenes);
     
@@ -177,9 +173,9 @@ HC2ScenePlatform.prototype.triggerSceneAccessory = function(accessory) {
 
     self.log('trigger HC2 scene ' + accessory.displayName + ', id: ' + sceneID);
 
-    var header = { 'host': HC2_IP_ADDR,
+    var header = { 'host': self.config.hc2.hc2_hostname,
                   'path': '/api/sceneControl?id=' + sceneID + '&action=start',
-                    'auth': HC2_USER + ':' + HC2_PASSWD
+                    'auth': self.config.hc2.hc2_account + ':' + self.config.hc2.hc2_password
                  };
     
     var request = http.request(
