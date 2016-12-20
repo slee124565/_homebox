@@ -1,9 +1,11 @@
 
 from django.views.generic import TemplateView, View
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, JsonResponse
 from django.conf import settings
 
 import os
+import json
+import re
 
 import logging
 logger = logging.getLogger(__name__)
@@ -33,12 +35,43 @@ class AngularTemplateView(View):
             return HttpResponse(html)
         except:
             raise Http404
-        
+
+def load_homebox_hc2_config_json():
+    with open('/var/homebridge/config.json','r') as fh:
+        config = json.loads(fh.read())
+
+    for platform in config['platforms']:
+        if platform['platform'] == 'HC2ScenePlatform':
+            return platform['hc2']
+
+    logger.warning('no HC2ScenePlatform platform config found!')
+    return {}            
+
+def load_wifi_config_json():
+    with open('/etc/wpa_supplicant/wpa_supplicant.conf','r') as fh:
+        content = fh.read()
+    
+    config = {}
+    founds = re.findall(r'ssid=\"(.+?)\"',content)
+    if len(founds) == 1:
+        config['ssid'] = founds[0]
+
+    founds = re.findall(r'psk=\"(.+?)\"',content)
+    if len(founds) == 1:
+        config['psk'] = founds[0]
+
+    return config
+
+
 class SiteConfigAPI(View):
     
     def get(self, request, *args, **kwargs):
         logger.debug('SiteConfigAPI GET API')
-        return HttpResponse('GET API')
+        siteConfig = {
+            'hc2': load_homebox_hc2_config_json(),
+            'wifi': load_wifi_config_json(),
+        }
+        return JsonResponse(siteConfig)
     
     def post(self, request, *args, **kwargs):
         logger.debug('SiteConfigAPI POST API')
