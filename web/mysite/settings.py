@@ -123,9 +123,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static/')
 STATICFILES_DIRS = [
-                    #os.path.join(BASE_DIR,"static"),
-                    ("js", os.path.join(BASE_DIR,"assets","js")),
-                    ("fonts", os.path.join(BASE_DIR,"assets","fonts")),
-                    ("css", os.path.join(BASE_DIR,"assets","css")),
+                    ("bower_components", os.path.join(BASE_DIR,"ngapp","bower_components")),
+                    ("styles", os.path.join(BASE_DIR,"ngapp","app","styles")),
+                    ("scripts", os.path.join(BASE_DIR,"ngapp","app","scripts")),
+                    ("images", os.path.join(BASE_DIR,"ngapp","app","images")),
                     ]
 

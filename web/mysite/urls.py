@@ -15,14 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.views.generic.base import TemplateView
 
-from .views import HomePageView, SiteConfigAPI
+from .views import SiteConfigAPI, AngularTemplateView
 
 urlpatterns = [
     
     #url(r'^admin/', admin.site.urls),
     
-    url(r'^$', HomePageView.as_view(), name='home'),
+    #url(r'^$', HomePageView.as_view(), name='home'),
+    
+    url(r'^$', TemplateView.as_view(template_name='index.html'), name='home'),
+    url(r'^views/(?P<item>[A-Za-z0-9\_\-\.\/]+)\.html$', AngularTemplateView.as_view()),
 
-    url(r'^/webapp/api/config$', SiteConfigAPI.as_view(), name='sitconfig')
+    url(r'^webapp/api/config$', SiteConfigAPI.as_view(), name='sitconfig'),
+
 ]
