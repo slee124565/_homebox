@@ -16,11 +16,13 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from .views import HomePageView
+from .views import HomePageView, SiteConfigAPI
 
 urlpatterns = [
     
     #url(r'^admin/', admin.site.urls),
     
-    url(r'^$', HomePageView.as_view(), name='home')
+    url(r'^$', HomePageView.as_view(), name='home'),
+
+    url(r'^/webapp/api/config$', SiteConfigAPI.as_view(), name='sitconfig')
 ]
