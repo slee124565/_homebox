@@ -68,3 +68,4 @@ parse_args() {
 parse_args $@
 set_hb_username
 set_hb_platform
+sudo systemctl restart homebridge
