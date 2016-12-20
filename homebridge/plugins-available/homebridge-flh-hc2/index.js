@@ -188,7 +188,7 @@ HC2ScenePlatform.prototype.triggerSceneAccessory = function(accessory) {
     
     setTimeout(function(){
         self.resetSceneAccessory(accessory);
-    }, 1500);
+    }, 3000);
 
 }
 
