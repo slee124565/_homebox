@@ -69,6 +69,21 @@ def wifi_ssid_scan():
     founds = re.findall(r'ESSID:\"(.+?)\"',scan_log)
     return [{'name': ssid} for ssid in founds]
 
+def setup_homebridge(config):
+    setup_hombridge_shell = os.path.join(os.path.dirname(settings.BASE_DIR),
+                                         'utils', 'setup_homebridge')
+    subprocess.check_call([setup_hombridge_shell,
+                           '-h', config['hc2IPAddress'],
+                           '-u', config['hc2Account'],
+                           '-p', config['hc2Password']]) 
+
+def setup_wifi(config):
+    setup_wifi_shell = os.path.join(os.path.dirname(settings.BASE_DIR),
+                                         'utils', 'setup_wifi')
+    subprocess.check_call([setup_wifi_shell,
+                           '-s', config['ssidSelected'],
+                           '-p', config['wifiPassword']]) 
+
 class SiteConfigAPI(View):
     
     def get(self, request, *args, **kwargs):
@@ -82,7 +97,30 @@ class SiteConfigAPI(View):
     
     def post(self, request, *args, **kwargs):
         logger.debug('SiteConfigAPI POST API')
-        for key, value in request.POST.items():
-            logger.debug('%s: %s' % (key,value))
-        return HttpResponse('POST API')
+        new_config = {
+            'hc2_hostname': request.POST.get('hc2IPAddress',''),
+            'hc2_account': request.POST.get('hc2Account',''),
+            'hc2_account': request.POST.get('hc2Password',''),
+            'wifi_ssid': request.POST.get('ssidSelected',{}).get('name',''),
+            'wifi_password': request.POST.get('wifiPassword',''),
+            }
+        check_passed = True
+        for key in new_config:
+            if new_config[key] == '':
+                check_passed = False
+        new_config['check_passed'] = check_passed
+        
+        if check_passed:
+            setup_homebridge(new_config)
+            setup_wifi(new_config)
+            pass
+        else:
+            return JsonResponse(new_config)
+            
+        siteConfig = {
+            'hc2': load_homebox_hc2_config_json(),
+            'wifi': load_wifi_config_json(),
+            'ssidOptions': wifi_ssid_scan(),
+        }
+        return JsonResponse(siteConfig)
         
