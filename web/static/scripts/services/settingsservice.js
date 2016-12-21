@@ -8,10 +8,11 @@
  * Service in the homeboxApp.
  */
 angular.module('homeboxApp')
-  .service('SettingsService', ['$http', 
-    function ($http) {
+  .constant('apiBaseURL', '/')
+  .service('SettingsService', ['$http','apiBaseURL', 
+    function ($http, apiBaseURL) {
         this.getSiteConfig = function() {
-            return $http.get('/webapp/api/config');
+            return $http.get(apiBaseURL + 'webapp/api/config');
         };
         this.setSiteConfig = function(newConfig) {
             return $http({
