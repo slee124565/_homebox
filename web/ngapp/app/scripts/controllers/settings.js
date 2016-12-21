@@ -7,21 +7,17 @@ angular.module('homeboxApp')
         $scope.title = 'FLH Homebox';
         $scope.description = 'Make your Fibaro HC2/HCL connected with Homekit APP';
         $scope.header = 'System Configurations';
-
-
+        
         $scope.siteConfig = {
             hc2IPAddress: '',
             hc2Account: '',
             hc2Password: '',
-            ssidOptions: [
-                {name: 'SSID1'},
-                {name: 'SSID2'},
-                {name: 'SSID3'}
-            ],
-            wifiSSID: {name: 'SSID3'}
+            ssidOptions: [],
+            wifiSSID: {}
         };
         $scope.ssidOptions = $scope.siteConfig.ssidOptions;
         $scope.wifiSSID = $scope.siteConfig.wifiSSID;
+        $scope.getSiteConfig();
         
         $scope.getSiteConfig = function() {
             $http({
@@ -29,7 +25,18 @@ angular.module('homeboxApp')
                 url: '/webapp/api/config'
             }).then(
                 function(response) {
-                    $scope.siteConfig = JSON.parse(response.data);
+                    $scope.config = JSON.parse(response.data);
+                    $scope.siteConfig = {
+                        hc2IPAddress: config.hc2.hc2_hostname,
+                        hc2Account: config.hc2.hc2_account,
+                        hc2Password: config.hc2.hc2_password,
+                        ssidOptions: config.ssidOptions,
+                        wifiSSID: {name: config.wifi.ssid},
+                        wifiPass: config.wifi.psk
+                    };
+                    $scope.ssidOptions = $scope.siteConfig.ssidOptions;
+                    $scope.wifiSSID = $scope.siteConfig.wifiSSID;
+                    $scope.wifiPassword = $scope.siteConfig.wifiPass;
                 },function(response){
                     $scope.errMessage = 'Fail to get site config data!';
                     console.log($scope.errMessage);
