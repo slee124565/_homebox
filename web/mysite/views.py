@@ -82,5 +82,7 @@ class SiteConfigAPI(View):
     
     def post(self, request, *args, **kwargs):
         logger.debug('SiteConfigAPI POST API')
+        for key, value in request.POST.items():
+            logger.debug('%s: %s' % (key,value))
         return HttpResponse('POST API')
         

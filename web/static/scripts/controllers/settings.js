@@ -40,12 +40,7 @@ angular.module('homeboxApp')
             });
 
         $scope.setSiteConfig = function() {
-            $http({
-                method: 'POST',
-                url: '/webapp/api/config',
-                data: $scope.siteConfig,
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-            }).then(
+            SettingsService.setSiteConfig($scope.siteConfig).then(
                 function(response){
                     $scope.notifyMessage = response.data;
                     console.log($scope.notifyMessage);
