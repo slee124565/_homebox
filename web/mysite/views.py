@@ -70,14 +70,16 @@ def wifi_ssid_scan():
     return [{'name': ssid} for ssid in founds]
 
 def setup_homebridge(config):
+    logger.debug('setup_homebridge')
     setup_hombridge_shell = os.path.join(os.path.dirname(settings.BASE_DIR),
-                                         'utils', 'setup_homebridge')
+                                         'utils', 'setup_homebox')
     subprocess.check_call([setup_hombridge_shell,
                            '-h', config['hc2IPAddress'],
                            '-u', config['hc2Account'],
                            '-p', config['hc2Password']]) 
 
 def setup_wifi(config):
+    logger.debug('setup_wifi')
     setup_wifi_shell = os.path.join(os.path.dirname(settings.BASE_DIR),
                                          'utils', 'setup_wifi')
     subprocess.check_call([setup_wifi_shell,
@@ -112,6 +114,7 @@ class SiteConfigAPI(View):
         new_config['check_passed'] = check_passed
         
         if check_passed:
+            logger.debug('check passed and post config')
             setup_homebridge(new_config)
             setup_wifi(new_config)
             pass
