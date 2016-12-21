@@ -17,7 +17,7 @@ angular.module('homeboxApp')
         this.setSiteConfig = function(newConfig) {
             return $http({
                 method: 'POST',
-                url: '/webapp/api/config',
+                url: apiBaseURL + 'webapp/api/config',
                 data: newConfig,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             });
