@@ -47,6 +47,7 @@ angular.module('homeboxApp')
                 function(response){
                     var config = response.data;
                     $scope.flashConfig(config);
+                    console.log('site config saved')
                 }, function(response){
                     $scope.errMessage = 'Fail to save site config data!';
                     console.log($scope.errMessage);
