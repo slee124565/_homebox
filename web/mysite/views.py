@@ -6,6 +6,7 @@ from django.conf import settings
 import os
 import json
 import re
+import subprocess
 
 import logging
 logger = logging.getLogger(__name__)
@@ -62,6 +63,10 @@ def load_wifi_config_json():
 
     return config
 
+def wifi_ssid_scan():
+    scan_log = subprocess.check_output(['sudo', 'iwlist', 'wlan0', 'scan'])
+    founds = re.findall(r'ESSID:\"(.+?)\"',str(scan_log))
+    return founds
 
 class SiteConfigAPI(View):
     
@@ -70,6 +75,7 @@ class SiteConfigAPI(View):
         siteConfig = {
             'hc2': load_homebox_hc2_config_json(),
             'wifi': load_wifi_config_json(),
+            'ssidOptions': wifi_ssid_scan(),
         }
         return JsonResponse(siteConfig)
     

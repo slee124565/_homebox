@@ -1,0 +1,18 @@
+#!/bin/bash
+
+ssid_list=$(sudo iwlist wlan0 scan | grep -o 'ESSID:"[^"]*"' | sed 's/ESSID://'  )
+#echo ${ssid_list}
+
+json_list=
+for ssid in ${ssid_list}
+do
+    if [ "${ssid}" != "" ]; then
+        if [ "${json_list}" == "" ]; then
+            json_list='"'${ssid}'"'
+        else
+            json_list=${json_list}',"'${ssid}'"'
+        fi
+    fi
+done
+echo $json_list
+
