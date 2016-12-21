@@ -32,6 +32,7 @@ angular.module('homeboxApp')
                     wifiPassword: wifiConfig.psk
                 };
                 $scope.ssidOptions = config.ssidOptions;
+                console.log($scope.siteConfig.ssidSelected);
             },function(response){
                 $scope.errMessage = 'Fail to get site config data!';
                 console.log($scope.errMessage);
