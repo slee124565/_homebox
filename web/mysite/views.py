@@ -65,7 +65,8 @@ def load_wifi_config_json():
 
 def wifi_ssid_scan():
     scan_log = subprocess.check_output(['sudo', 'iwlist', 'wlan0', 'scan'])
-    founds = re.findall(r'ESSID:\"(.+?)\"',str(scan_log))
+    scan_log = scan_log.decode("utf-8") 
+    founds = re.findall(r'ESSID:\"(.+?)\"',scan_log)
     return founds
 
 class SiteConfigAPI(View):

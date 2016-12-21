@@ -8,4 +8,6 @@ from mysite.views import *
 #config = load_wifi_config_json()
 #print(config)
 
-print(wifi_ssid_scan())
+for ssid in wifi_ssid_scan():
+    print(ssid)
+
