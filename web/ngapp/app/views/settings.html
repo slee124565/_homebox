@@ -72,12 +72,12 @@
 								<label for="wifiSSID">WiFi SSID:</label>
 								<select class="form-control" 
                                         ng-options="option.name for option in ssidOptions track by option.name" 
-                                        ng-model="wifiSSID"></select>
+                                        ng-model="ssidSelected"></select>
 							</div>
 						
 							<div class="form-group">
 								<label for="wifiPassword">WiFi AP Password</label>
-								<input type="password" class="form-control" ng-model="wifiPassword" 
+								<input type="password" class="form-control" ng-model="siteConfig.wifiPassword" 
                                        id="wifiPassword" placeholder="WiFi Password">
 							</div>
 							

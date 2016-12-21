@@ -28,13 +28,10 @@ angular.module('homeboxApp')
                     hc2Account: hc2Config.hc2_account,
                     hc2Password: hc2Config.hc2_password,
                     ssidOptions: config.ssidOptions,
-                    wifiSSID: {name: wifiConfig.ssid},
-                    wifiPass: wifiConfig.psk
+                    ssidSelected: {name: wifiConfig.ssid},
+                    wifiPassword: wifiConfig.psk
                 };
                 $scope.ssidOptions = config.ssidOptions;
-                $scope.wifiSSID = $scope.siteConfig.wifiSSID;
-                $scope.wifiPassword = $scope.siteConfig.wifiPass;
-                console.log($scope.wifiSSID,$scope.wifiPassword);
             },function(response){
                 $scope.errMessage = 'Fail to get site config data!';
                 console.log($scope.errMessage);
