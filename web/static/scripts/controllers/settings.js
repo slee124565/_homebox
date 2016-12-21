@@ -20,7 +20,7 @@ angular.module('homeboxApp')
         
         SettingsService.getSiteConfig().then(
             function(response) {
-                var config = JSON.parse(response.data);
+                var config = response.data;
                 var hc2Config = config.hc2;
                 var wifiConfig = config.wifi;
                 $scope.siteConfig = {
@@ -34,6 +34,7 @@ angular.module('homeboxApp')
                 $scope.ssidOptions = config.ssidOptions;
                 $scope.wifiSSID = $scope.siteConfig.wifiSSID;
                 $scope.wifiPassword = $scope.siteConfig.wifiPass;
+                console.log($scope.wifiSSID,$scope.wifiPassword);
             },function(response){
                 $scope.errMessage = 'Fail to get site config data!';
                 console.log($scope.errMessage);
