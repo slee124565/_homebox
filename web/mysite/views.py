@@ -97,12 +97,13 @@ class SiteConfigAPI(View):
     
     def post(self, request, *args, **kwargs):
         logger.debug('SiteConfigAPI POST API')
+        post_config = json.loads(request.body.decode('utf-8'))
         new_config = {
-            'hc2_hostname': request.POST.get('hc2IPAddress',''),
-            'hc2_account': request.POST.get('hc2Account',''),
-            'hc2_account': request.POST.get('hc2Password',''),
-            'wifi_ssid': request.POST.get('ssidSelected',{}).get('name',''),
-            'wifi_password': request.POST.get('wifiPassword',''),
+            'hc2_hostname': post_config.get('hc2IPAddress',''),
+            'hc2_account': post_config.get('hc2Account',''),
+            'hc2_account': post_config.get('hc2Password',''),
+            'wifi_ssid': post_config.get('ssidSelected',{}).get('name',''),
+            'wifi_password': post_config.get('wifiPassword',''),
             }
         check_passed = True
         for key in new_config:
@@ -111,10 +112,11 @@ class SiteConfigAPI(View):
         new_config['check_passed'] = check_passed
         
         if check_passed:
-            setup_homebridge(new_config)
-            setup_wifi(new_config)
+            #setup_homebridge(new_config)
+            #setup_wifi(new_config)
             pass
         else:
+            logger.warning('new config check fail, %s' % new_config)
             return JsonResponse(new_config)
             
         siteConfig = {

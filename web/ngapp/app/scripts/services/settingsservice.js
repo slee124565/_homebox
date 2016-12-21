@@ -19,7 +19,7 @@ angular.module('homeboxApp')
                 method: 'POST',
                 url: apiBaseURL + 'webapp/api/config',
                 data: newConfig,
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             });
         };
   }]);
