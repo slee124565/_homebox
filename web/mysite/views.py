@@ -74,17 +74,17 @@ def setup_homebridge(config):
     setup_hombridge_shell = os.path.join(os.path.dirname(settings.BASE_DIR),
                                          'utils', 'setup_homebox')
     subprocess.check_call([setup_hombridge_shell,
-                           '-h', config['hc2IPAddress'],
-                           '-u', config['hc2Account'],
-                           '-p', config['hc2Password']]) 
+                           '-h', config['hc2_hostname'],
+                           '-u', config['hc2_account'],
+                           '-p', config['hc2_password']]) 
 
 def setup_wifi(config):
     logger.debug('setup_wifi')
     setup_wifi_shell = os.path.join(os.path.dirname(settings.BASE_DIR),
                                          'utils', 'setup_wifi')
     subprocess.check_call([setup_wifi_shell,
-                           '-s', config['ssidSelected'],
-                           '-p', config['wifiPassword']]) 
+                           '-s', config['wifi_ssid'],
+                           '-p', config['wifi_password']]) 
 
 class SiteConfigAPI(View):
     
@@ -104,7 +104,7 @@ class SiteConfigAPI(View):
             new_config = {
                 'hc2_hostname': post_config.get('hc2IPAddress',''),
                 'hc2_account': post_config.get('hc2Account',''),
-                'hc2_account': post_config.get('hc2Password',''),
+                'hc2_password': post_config.get('hc2Password',''),
                 'wifi_ssid': post_config.get('ssidSelected',{}).get('name',''),
                 'wifi_password': post_config.get('wifiPassword',''),
                 }
@@ -115,7 +115,7 @@ class SiteConfigAPI(View):
             new_config['check_passed'] = check_passed
             
             if check_passed:
-                logger.debug('check passed and post config')
+                logger.debug('check passed and post config %s' % new_config)
                 setup_homebridge(new_config)
                 setup_wifi(new_config)
                 pass
@@ -126,7 +126,7 @@ class SiteConfigAPI(View):
             siteConfig = {
                 'hc2': load_homebox_hc2_config_json(),
                 'wifi': load_wifi_config_json(),
-                'ssidOptions': wifi_ssid_scan(),
+                'ssidOptions': post_config.get('ssidOptions'),
             }
             return JsonResponse(siteConfig)
         
