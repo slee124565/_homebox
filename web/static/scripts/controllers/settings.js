@@ -18,21 +18,24 @@ angular.module('homeboxApp')
         $scope.ssidOptions = $scope.siteConfig.ssidOptions;
         $scope.wifiSSID = $scope.siteConfig.wifiSSID;
         
+        $scope.flashConfig = function(config) {
+            var hc2Config = config.hc2;
+            var wifiConfig = config.wifi;
+            $scope.siteConfig = {
+                hc2IPAddress: hc2Config.hc2_hostname,
+                hc2Account: hc2Config.hc2_account,
+                hc2Password: hc2Config.hc2_password,
+                ssidOptions: config.ssidOptions,
+                ssidSelected: {name: wifiConfig.ssid},
+                wifiPassword: wifiConfig.psk
+            };
+            $scope.ssidOptions = config.ssidOptions;
+        };
+        
         SettingsService.getSiteConfig().then(
             function(response) {
                 var config = response.data;
-                var hc2Config = config.hc2;
-                var wifiConfig = config.wifi;
-                $scope.siteConfig = {
-                    hc2IPAddress: hc2Config.hc2_hostname,
-                    hc2Account: hc2Config.hc2_account,
-                    hc2Password: hc2Config.hc2_password,
-                    ssidOptions: config.ssidOptions,
-                    ssidSelected: {name: wifiConfig.ssid},
-                    wifiPassword: wifiConfig.psk
-                };
-                $scope.ssidOptions = config.ssidOptions;
-                //console.log($scope.siteConfig.ssidSelected);
+                $scope.flashConfig(config);
             },function(response){
                 $scope.errMessage = 'Fail to get site config data!';
                 console.log($scope.errMessage);
@@ -42,8 +45,8 @@ angular.module('homeboxApp')
         $scope.setSiteConfig = function() {
             SettingsService.setSiteConfig($scope.siteConfig).then(
                 function(response){
-                    $scope.notifyMessage = response.data;
-                    console.log($scope.notifyMessage);
+                    var config = response.data;
+                    $scope.flashConfig(config);
                 }, function(response){
                     $scope.errMessage = 'Fail to save site config data!';
                     console.log($scope.errMessage);

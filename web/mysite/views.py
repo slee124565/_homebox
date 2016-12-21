@@ -112,8 +112,8 @@ class SiteConfigAPI(View):
         new_config['check_passed'] = check_passed
         
         if check_passed:
-            #setup_homebridge(new_config)
-            #setup_wifi(new_config)
+            setup_homebridge(new_config)
+            setup_wifi(new_config)
             pass
         else:
             logger.warning('new config check fail, %s' % new_config)
