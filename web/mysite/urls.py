@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.views.generic.base import TemplateView
+from django.views.decorators.csrf import csrf_exempt
 
 from .views import SiteConfigAPI, AngularTemplateView
 
@@ -28,6 +29,6 @@ urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='index.html'), name='home'),
     url(r'^views/(?P<item>[A-Za-z0-9\_\-\.\/]+)\.html$', AngularTemplateView.as_view()),
 
-    url(r'^webapp/api/config$', SiteConfigAPI.as_view(), name='sitconfig'),
+    url(r'^webapp/api/config$', csrf_exempt(SiteConfigAPI.as_view()), name='sitconfig'),
 
 ]
