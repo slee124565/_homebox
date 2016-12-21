@@ -1,6 +1,6 @@
 
 from django.views.generic import TemplateView, View
-from django.http import HttpResponse, Http404, JsonResponse
+from django.http import HttpResponse, Http404, JsonResponse, HttpResponseServerError
 from django.conf import settings
 
 import os
@@ -99,33 +99,37 @@ class SiteConfigAPI(View):
     
     def post(self, request, *args, **kwargs):
         logger.debug('SiteConfigAPI POST API')
-        post_config = json.loads(request.body.decode('utf-8'))
-        new_config = {
-            'hc2_hostname': post_config.get('hc2IPAddress',''),
-            'hc2_account': post_config.get('hc2Account',''),
-            'hc2_account': post_config.get('hc2Password',''),
-            'wifi_ssid': post_config.get('ssidSelected',{}).get('name',''),
-            'wifi_password': post_config.get('wifiPassword',''),
-            }
-        check_passed = True
-        for key in new_config:
-            if new_config[key] == '':
-                check_passed = False
-        new_config['check_passed'] = check_passed
-        
-        if check_passed:
-            logger.debug('check passed and post config')
-            setup_homebridge(new_config)
-            setup_wifi(new_config)
-            pass
-        else:
-            logger.warning('new config check fail, %s' % new_config)
-            return JsonResponse(new_config)
+        try:
+            post_config = json.loads(request.body.decode('utf-8'))
+            new_config = {
+                'hc2_hostname': post_config.get('hc2IPAddress',''),
+                'hc2_account': post_config.get('hc2Account',''),
+                'hc2_account': post_config.get('hc2Password',''),
+                'wifi_ssid': post_config.get('ssidSelected',{}).get('name',''),
+                'wifi_password': post_config.get('wifiPassword',''),
+                }
+            check_passed = True
+            for key in new_config:
+                if new_config[key] == '':
+                    check_passed = False
+            new_config['check_passed'] = check_passed
             
-        siteConfig = {
-            'hc2': load_homebox_hc2_config_json(),
-            'wifi': load_wifi_config_json(),
-            'ssidOptions': wifi_ssid_scan(),
-        }
-        return JsonResponse(siteConfig)
+            if check_passed:
+                logger.debug('check passed and post config')
+                setup_homebridge(new_config)
+                setup_wifi(new_config)
+                pass
+            else:
+                logger.warning('new config check fail, %s' % new_config)
+                return JsonResponse(new_config)
+                
+            siteConfig = {
+                'hc2': load_homebox_hc2_config_json(),
+                'wifi': load_wifi_config_json(),
+                'ssidOptions': wifi_ssid_scan(),
+            }
+            return JsonResponse(siteConfig)
         
+        except:
+            logger.warning('Exception Error', exc_info=True)
+            return HttpResponseServerError()
