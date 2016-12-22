@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.views.generic.base import TemplateView
 from django.views.decorators.csrf import csrf_exempt
 
-from .views import SiteConfigAPI, AngularTemplateView
+from .views import SiteResetAPI, SiteConfigAPI, AngularTemplateView
 
 urlpatterns = [
     
@@ -30,5 +30,6 @@ urlpatterns = [
     url(r'^views/(?P<item>[A-Za-z0-9\_\-\.\/]+)\.html$', AngularTemplateView.as_view()),
 
     url(r'^webapp/api/config$', csrf_exempt(SiteConfigAPI.as_view()), name='sitconfig'),
+    url(r'^webapp/api/reset', csrf_exempt(SiteResetAPI.as_view()), name='sitreset'),
 
 ]

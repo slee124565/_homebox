@@ -52,6 +52,5 @@ if ! $connected; then
     createAdHocNetwork
 fi 
 
-echo 'config wifi end'
-
+# WiFi Hotspot Config End
 

@@ -1,0 +1,15 @@
+#!/bin/bash -x
+
+FILE_PATH=$(echo $(cd $(dirname "$0") && pwd -P)/$(basename "$0"))
+FILE_DIR=$(dirname "${FILE_PATH}")
+
+sleep 3
+
+# reset flhomebox
+${FILE_DIR}/factory_reset_homebridge
+
+# reset wifi
+${FILE_DIR}/factory_wifi
+
+# reboot system after 3 seconds
+sudo reboot

@@ -9,6 +9,7 @@ import re
 import subprocess
 
 import logging
+from pip._vendor.requests.api import post
 logger = logging.getLogger(__name__)
 
 class HomePageView(TemplateView):
@@ -131,5 +132,37 @@ class SiteConfigAPI(View):
             return JsonResponse(siteConfig)
         
         except:
-            logger.warning('Exception Error', exc_info=True)
+            logger.warning('SiteConfigAPI Exception Error', exc_info=True)
             return HttpResponseServerError()
+
+def do_factory_reset():
+    logger.debug('do_factory_reset')
+    factory_reset_shell = os.path.join(os.path.dirname(settings.BASE_DIR),
+                                         'utils', 'factory_reset')
+    subprocess.call([factory_reset_shell, '&']) 
+
+class SiteResetAPI(View):
+    
+    def post(self, request, *args, **kwargs):
+        logger.debug('SiteResetAPI POST API')
+        try:
+            post_config = json.loads(request.body.decode('utf-8'))
+            if post_config.token == 'flhomebox':
+                logger.warning('factory reset triggered by web api!')
+                do_factory_reset()
+            else:
+                logger.warning('SiteResetAPI triggered with wrong token %s' % post_config)
+            
+            return HttpResponse('OK')
+        except:
+            logger.warning('SiteResetAPI Exception Error', exc_info=True)
+            return HttpResponseServerError()
+                
+    
+    
+    
+    
+    
+    
+    
+    

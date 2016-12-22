@@ -11,15 +11,24 @@ angular.module('homeboxApp')
   .constant('apiBaseURL', '/')
   .service('SettingsService', ['$http','apiBaseURL', 
     function ($http, apiBaseURL) {
+        
         this.getSiteConfig = function() {
             return $http.get(apiBaseURL + 'webapp/api/config');
         };
+        
         this.setSiteConfig = function(newConfig) {
             return $http({
                 method: 'POST',
                 url: apiBaseURL + 'webapp/api/config',
                 data: newConfig,
-                //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            });
+        };
+        
+        this.factoryReset = function() {
+            return $http({
+                method: 'POST',
+                url: apiBaseURL + 'webapp/api/reset',
+                data: {token:'flhomebox'},
             });
         };
   }]);

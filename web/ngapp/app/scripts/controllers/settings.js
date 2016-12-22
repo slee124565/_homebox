@@ -47,12 +47,22 @@ angular.module('homeboxApp')
                 function(response){
                     var config = response.data;
                     $scope.flashConfig(config);
-                    console.log('site config saved')
+                    console.log('site config saved');
                 }, function(response){
                     $scope.errMessage = 'Fail to save site config data!';
                     console.log($scope.errMessage);
                     console.log(response.statusText);
                 });
+        };
+        
+        $scope.factoryReset = function() {
+          SettingsService.factoryReset().then(
+            function(response) {
+                console.log('site reset response ' + response.data);
+            }, function(response) {
+                console.log('site reset fail ' + response.statusText);
+            }
+          );  
         };
         
     }]);
