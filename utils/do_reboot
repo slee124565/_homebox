@@ -1,0 +1,4 @@
+#!/bin/bash -x
+
+sleep 3
+sudo reboot

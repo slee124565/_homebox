@@ -87,6 +87,12 @@ def setup_wifi(config):
                            '-s', config['wifi_ssid'],
                            '-p', config['wifi_password']]) 
 
+def do_reboot():
+    logger.debug('do_reboot')
+    reboot_shell = os.path.join(os.path.dirname(settings.BASE_DIR),
+                                         'utils', 'do_reboot')
+    subprocess.call([reboot_shell,'&']) 
+    
 class SiteConfigAPI(View):
     
     def get(self, request, *args, **kwargs):
@@ -119,6 +125,7 @@ class SiteConfigAPI(View):
                 logger.debug('check passed and post config %s' % new_config)
                 setup_homebridge(new_config)
                 setup_wifi(new_config)
+                do_reboot()
                 pass
             else:
                 logger.warning('new config check fail, %s' % new_config)
