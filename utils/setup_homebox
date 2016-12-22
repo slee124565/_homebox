@@ -1,0 +1,71 @@
+#!/bin/bash -x
+
+HOMEBRIDGE_CONFIG_FILE=/var/homebridge/config.json
+
+
+usage()
+{
+more <<EOM
+Usage:
+${0##*/} -h <HC2_IP_ADDRESS> -u <HC2_USERNAME> -p <HC2_PASSWORD>
+
+    -h <HC2_IP_ADDRESS> HC2 Local IP Address
+    
+    -u <HC2_USERNAME> HC2 Web API Username
+
+    -p <HC2_PASSWORD> HC2 Web API Password
+
+EOM
+}
+
+get_mac_addr() {
+    mac_addr=$(ifconfig wlan0 | grep -o 'HWaddr\s.*$' | sed 's/HWaddr\s//' | tr -d '[:space:]')
+    mac_addr=${mac_addr^^}
+    echo $mac_addr
+}
+
+set_hb_username() {
+    mac_addr=$(get_mac_addr)
+    if [ -f "$HOMEBRIDGE_CONFIG_FILE" ]; then
+        sudo -u homebridge sed -i '/"username": / c\       "username": '"\"${mac_addr}\"," ${HOMEBRIDGE_CONFIG_FILE}
+    else
+        echo "ERR: homebridge config.json not exist!"
+        echo "ERR: fail to set homebridge username config!"
+    fi
+}
+
+set_hb_platform() {
+
+    sudo -u homebridge sed -i '/"hc2_account": / c\                "hc2_account": '"\"${hc2_username}\"," ${HOMEBRIDGE_CONFIG_FILE}
+    sudo -u homebridge sed -i '/"hc2_password": / c\                "hc2_password": '"\"${hc2_password}\"," ${HOMEBRIDGE_CONFIG_FILE}
+    sudo -u homebridge sed -i '/"hc2_hostname": / c\                "hc2_hostname": '"\"${hc2_ip}\"" ${HOMEBRIDGE_CONFIG_FILE}
+}
+
+parse_args() {
+
+    optstring=h:u:p:
+    while getopts $optstring opt
+    do
+    case $opt in
+      h) hc2_ip=$OPTARG;;
+      u) hc2_username=$OPTARG;;
+      p) hc2_password=$OPTARG;;
+      *) usage;
+    esac
+    done
+
+    # check HC2_IP_ADDRESS
+    [ -z "${hc2_ip}" ] && echo "No HC2_IP_ADDRESS is specified!" && usage && exit 1
+
+    # check HC2_USERNAME
+    [ -z "${hc2_username}" ] && echo "No HC2_USERNAME is specified!" && usage && exit 1
+
+    # check HC2_PASSWORD
+    [ -z "${hc2_password}" ] && echo "No HC2_PASSWORD is specified!" && usage && exit 1
+
+}
+
+parse_args $@
+set_hb_username
+set_hb_platform
+sudo systemctl restart homebridge

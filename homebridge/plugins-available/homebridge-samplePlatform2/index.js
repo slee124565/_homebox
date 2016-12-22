@@ -69,6 +69,27 @@ function SamplePlatform(log, config, api) {
 // Update current value
 SamplePlatform.prototype.configureAccessory = function(accessory) {
   this.log(accessory.displayName, "Configure Accessory");
+    this.log('before configure accessories count ' + this.accessories.length);
+    var obj;
+    obj = this.api._accessories;
+    for (var key in obj) {
+        this.log('api._accessories key ' + key);
+    }
+    obj = this.api._platforms;
+    for (var key in obj) {
+        this.log('api._platforms key ' + key);
+    }
+    obj = this.api._configurableAccessories;
+    for (var key in obj) {
+        this.log('api._configurableAccessories key ' + key);
+    }
+    obj = this.api._dynamicPlatforms;
+    for (var key in obj) {
+        this.log('api._dynamicPlatforms key ' + key);
+    }
+
+    obj = accessory;
+    
   var platform = this;
 
   // set the accessory to reachable if plugin can currently process the accessory
@@ -95,6 +116,7 @@ SamplePlatform.prototype.configureAccessory = function(accessory) {
   }
 
   this.accessories.push(accessory);
+    this.log('after configure accessories count ' + this.accessories.length);
 }
 
 //Handler will be invoked when user try to config your plugin
@@ -204,6 +226,23 @@ SamplePlatform.prototype.addAccessory = function(accessoryName) {
 
   this.accessories.push(newAccessory);
   this.api.registerPlatformAccessories("homebridge-samplePlatform2", "SamplePlatform", [newAccessory]);
+    var obj;
+    obj = this.api._accessories;
+    for (var key in obj) {
+        this.log('api._accessories key ' + key);
+    }
+    obj = this.api._platforms;
+    for (var key in obj) {
+        this.log('api._platforms key ' + key);
+    }
+    obj = this.api._configurableAccessories;
+    for (var key in obj) {
+        this.log('api._configurableAccessories key ' + key);
+    }
+    obj = this.api._dynamicPlatforms;
+    for (var key in obj) {
+        this.log('api._dynamicPlatforms key ' + key);
+    }
 }
 
 SamplePlatform.prototype.updateAccessoriesReachability = function() {
@@ -222,6 +261,8 @@ SamplePlatform.prototype.removeAccessory = function() {
   this.accessories = [];
 }
 
+
+
 function startScene() {
     var http = require('http');
     var scene_ID_env = 17;
@@ -235,7 +276,7 @@ function startScene() {
                     'auth': hc2Username + ':' + hc2Password
                  };
     var request = http.request(header, function(response){
-                        console.log('statusCode: ' + response.statusCode);
+                        //console.log('statusCode: ' + response.statusCode);
     });
     request.end();
 

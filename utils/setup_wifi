@@ -1,0 +1,45 @@
+#!/bin/bash -x
+
+FILE_PATH=$(echo $(cd $(dirname "$0") && pwd -P)/$(basename "$0"))
+BASEDIR=$(dirname "$(dirname "${FILE_PATH}")")
+
+usage()
+{
+more <<EOM
+Usage:
+${0##*/} -s <WIFI_SSID> -p <WIFI_PASSWORD>
+
+    -s <WIFI_SSID> WiFi Hotspot AP SSID
+    
+    -p <WIFI_PASSWORD> WiFi Hotspot AP Password
+
+EOM
+}
+
+parse_args() {
+
+    optstring=s:p:
+    while getopts $optstring opt
+    do
+    case $opt in
+      s) ssid=$OPTARG;;
+      p) password=$OPTARG;;
+      *) usage;
+    esac
+    done
+
+    # check WIFI_SSID
+    [ -z "${ssid}" ] && echo "No WIFI_SSID is specified!" && usage && exit 1
+
+    # check WIFI_PASSWORD
+    [ -z "${password}" ] && echo "No WIFI_PASSWORD is specified!" && usage && exit 1
+
+}
+
+parse_args $@
+sudo cp $BASEDIR/factory/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
+sudo sed -i '/ssid=/ c\    ssid='"\"${ssid}\"" /etc/wpa_supplicant/wpa_supplicant.conf
+sudo sed -i '/psk=/ c\    psk='"\"${password}\"" /etc/wpa_supplicant/wpa_supplicant.conf
+sudo ifdown wlan0
+sudo sleep .5
+sudo ifup wlan0

@@ -1,0 +1,9 @@
+#!/bin/bash -x
+
+FILE_PATH=$(echo $(cd $(dirname "$0") && pwd -P)/$(basename "$0"))
+BASEDIR=$(dirname "$(dirname "${FILE_PATH}")")
+
+#-> rollback /etc/wpa_supplicant/wpa_supplicant.conf
+sudo cp $BASEDIR/factory/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
+
+

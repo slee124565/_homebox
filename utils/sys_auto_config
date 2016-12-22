@@ -1,0 +1,25 @@
+#!/bin/bash -x
+
+HOMEBRIDGE_CONFIG_FILE=/var/homebridge/config.json
+
+get_mac_addr() {
+    mac_addr=$(ifconfig wlan0 | grep -o 'HWaddr\s.*$' | sed 's/HWaddr\s//' | tr -d '[:space:]')
+    mac_addr=${mac_addr^^}
+    echo $mac_addr
+}
+
+set_hb_username() {
+    mac_addr=$(get_mac_addr)
+    if [ -f "$HOMEBRIDGE_CONFIG_FILE" ]; then
+        sudo -u homebridge sed -i '/"username": / c\       "username": '"\"${mac_addr}\"" ${HOMEBRIDGE_CONFIG_FILE}
+    else
+        echo "ERR: homebridge config.json not exist!"
+        echo "ERR: fail to set homebridge username config!"
+    fi
+}
+
+
+##### config.json #####
+
+set_hb_username
+

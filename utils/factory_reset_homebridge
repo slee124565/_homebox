@@ -1,0 +1,15 @@
+#!/bin/bash -x
+
+FILE_PATH=$(echo $(cd $(dirname "$0") && pwd -P)/$(basename "$0"))
+BASEDIR=$(dirname "$(dirname "${FILE_PATH}")")
+
+#-> rollback /var/homebridge/config.json
+sudo -u homebridge cp ${BASEDIR}/factory/config.json /var/homebridge/config.json
+
+#-> rollback /etc/default/homebridge
+sudo cp ${BASEDIR}/factory/homebridge.default /etc/default/homebridge
+
+#-> remove homebridge temp files
+sudo rm -rf /var/homebridge/persist /var/homebridge/accessories
+
+
