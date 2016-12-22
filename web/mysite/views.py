@@ -147,7 +147,7 @@ class SiteResetAPI(View):
         logger.debug('SiteResetAPI POST API')
         try:
             post_config = json.loads(request.body.decode('utf-8'))
-            if post_config.token == 'flhomebox':
+            if post_config['token'] == 'flhomebox':
                 logger.warning('factory reset triggered by web api!')
                 do_factory_reset()
             else:

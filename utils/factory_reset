@@ -9,7 +9,7 @@ sleep 3
 ${FILE_DIR}/factory_reset_homebridge
 
 # reset wifi
-${FILE_DIR}/factory_wifi
+${FILE_DIR}/factory_reset_wifi
 
 # reboot system after 3 seconds
 sudo reboot
