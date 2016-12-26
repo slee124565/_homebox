@@ -69,7 +69,7 @@ HC2.prototype.get_visible_room_scenes = function() {
 
 HC2.prototype.read_hc2_room_scenes = function(callback) {
     var self = this;
-    self.log('read hc2 scenes ...');
+    //self.log('read hc2 scenes ...');
     
     var header = { 
         'host': self.config.hc2_hostname,
@@ -88,7 +88,7 @@ HC2.prototype.read_hc2_room_scenes = function(callback) {
             //the whole response has been recieved, so we just print it out here
             response.on('end', function () {
                 self.hc2_scenes = JSON.parse(str);
-                self.log('read hc2 scenes count ' + self.hc2_scenes.length);
+                //self.log('read hc2 scenes count ' + self.hc2_scenes.length);
                 self.read_hc2_rooms(callback);
             });
             
@@ -97,7 +97,7 @@ HC2.prototype.read_hc2_room_scenes = function(callback) {
                 callback(err,null);
             });
 
-            self.log('read hc2 scenes response code: ' + response.statusCode);
+            //self.log('read hc2 scenes response code: ' + response.statusCode);
         }
     );
     request.end();
@@ -108,7 +108,7 @@ HC2.prototype.read_hc2_rooms = function(callback) {
     var self = this;
     var room_scenes = [];
     
-    self.log('read hc2 rooms ...');
+    //self.log('read hc2 rooms ...');
     
     var header = { 
         'host': self.config.hc2_hostname,
@@ -127,7 +127,7 @@ HC2.prototype.read_hc2_rooms = function(callback) {
             //the whole response has been recieved, so we just print it out here
             response.on('end', function () {
                 self.hc2_rooms = JSON.parse(str);
-                self.log('read hc2 rooms count ' + self.hc2_rooms.length);
+                //self.log('read hc2 rooms count ' + self.hc2_rooms.length);
                 callback(null, { 
                     parent: self.parent,
                     roomScenes : self.get_visible_room_scenes()});
@@ -138,7 +138,7 @@ HC2.prototype.read_hc2_rooms = function(callback) {
                 callback(err,null);
             });
 
-            self.log('read hc2 rooms response code: ' + response.statusCode);
+            //self.log('read hc2 rooms response code: ' + response.statusCode);
         }
     );
     request.end();
