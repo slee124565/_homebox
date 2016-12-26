@@ -101,6 +101,16 @@ HC2ScenePlatform.prototype.didFinishLaunching = function() {
     self.log('start to read hc2(' + self.config.hc2.hc2_hostname + ') room scenes ...');
     var hc2 = new HC2(self, self.config.hc2);
     hc2.read_hc2_room_scenes(self.syncHC2RoomScenes);
+    self.hc2 = hc2;
+    setInterval( function() { self.hc2RoomScenesSyncProcess(self); } , 60 * 1000);
+}
+
+HC2ScenePlatform.prototype.hc2RoomScenesSyncProcess = function(platform) {
+    var self = platform;
+    self.log('hc2RoomScenesSyncProcess');
+    if (self.hc2) {
+        self.hc2.read_hc2_room_scenes(self.syncHC2RoomScenes);
+    }
     
 }
 
@@ -161,7 +171,7 @@ HC2ScenePlatform.prototype.removeNotSyncSceneAccessory = function() {
         if (accessory.context.sync_exist) {
             //self.log('keep accessory ' + accessory.displayName);
         } else {
-            self.log('remove accessory ' + accessory.displayName);
+            //self.log('remove accessory ' + accessory.displayName);
             self.removeAccessory(accessory);
         }
     }
