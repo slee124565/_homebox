@@ -41,7 +41,7 @@ HC2.prototype.get_visible_room_scenes = function() {
     for (var i=0; i < hc2_scenes.length; i++) {
         
         var t_scene = hc2_scenes[i];
-        if (t_scene['visible'] && t_scene['roomID'] > 0) {
+        if ( t_scene['roomID'] > 0 && ( typeof t_scene['visible'] === 'undefined' ||  t_scene['visible'] )) {
             var roomID = t_scene.roomID;
             var roomName = undefined;
             for (var j =0; j < hc2_rooms.length; j++) {
